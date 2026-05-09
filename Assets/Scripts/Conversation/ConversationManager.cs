@@ -13,6 +13,7 @@ public class ConversationManager : MonoBehaviour
 
     [Header("Conversations")]
     [SerializeField] private List<GameObject> activeConversationObjects;
+    [SerializeField] public List<GameObject> tangentPrefabs = new List<GameObject>();
 
     private void Awake()
     {
@@ -32,8 +33,6 @@ public class ConversationManager : MonoBehaviour
     private void Update()
     {
         HandleConversations();
-
-
     }
 
     private void HandleConversations()
@@ -48,11 +47,11 @@ public class ConversationManager : MonoBehaviour
 
     public void CreateConversation(List<GameObject> personalityObjects, GameObject tangentOpenerPrefab)
     {
-        Debug.Log($"AddConversation: tangentOpenerPrefab_{tangentOpenerPrefab.name}");
+        Debug.Log($"AddConversation: tangentOpenerPrefab_{tangentOpenerPrefab.GetComponent<Tangent>().tangentName}");
 
         GameObject conversationObject = new GameObject("Conversation");
         conversationObject.transform.SetParent(this.transform);
-        conversationObject.AddComponent<Conversation>().Initialize(personalityObjects, tangentOpenerPrefab);
+        conversationObject.AddComponent<Conversation>().Initialize(personalityObjects, tangentOpenerPrefab, tangentPrefabs);
         activeConversationObjects.Add(conversationObject);
         //GameObject conversationVisualizerObject = Instantiate(conversationVisualizerPrefab);
         //conversationVisualizerObject.transform.SetParent(this.transform);

@@ -25,7 +25,7 @@ public class ConversationStarter : MonoBehaviour
             Tangent tangentComponent = tangentPrefab.GetComponent<Tangent>();
             if (tangentComponent == null)
             {
-                Debug.Log($"ERROR: ConversationStarter.Start: gameObject_{tangentPrefab.name} does not have a Tangent component");
+                Debug.Log($"ERROR: ConversationStarter.Start: gameObject_{tangentPrefab.GetComponent<Tangent>().tangentName} does not have a Tangent component");
             }
         }
         
@@ -58,7 +58,7 @@ public class ConversationStarter : MonoBehaviour
         GameObject tangentPrefab = GetValidTangentPrefab();
         if (tangentPrefab != null)
         {
-            Debug.Log($"AttemptStartConversation: Conversation started with Tangent_{tangentPrefab.name}");
+            Debug.Log($"AttemptStartConversation: Conversation started with tangentName_{tangentPrefab.GetComponent<Tangent>().tangentName}");
 
             List<GameObject> conversationPersonalityObjects = new List<GameObject>();
 
@@ -89,7 +89,7 @@ public class ConversationStarter : MonoBehaviour
     {
         foreach (GameObject availableTangentPrefab in availableTangentPrefabs)
         {
-            //Debug.Log($"GetValidTangentObject: availableTangentObject_{availableTangentObject.name}");
+            //Debug.Log($"GetValidTangentObject: availableTangentObject_{availableTangentPrefab.name}");
             Tangent availableTangent = availableTangentPrefab.GetComponent<Tangent>();
             if (availableTangent == null)
             {
@@ -100,7 +100,7 @@ public class ConversationStarter : MonoBehaviour
             bool isValidTangent = availableTangent.GetIsTangentValid();
             if (!isValidTangent)
             {
-                //Debug.Log($"GetValidTangentObject: availableTangentObject_{availableTangentObject.name} is not a valid tangent");
+                //Debug.Log($"GetValidTangentObject: availableTangentObject_{availableTangentPrefab.name} is not a valid tangent");
                 continue;
             }
 
@@ -128,7 +128,7 @@ public class ConversationStarter : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log($"GetValidTangentObject: Local Personality is not required for Tangent_{availableTangent.name}");
+                    Debug.Log($"GetValidTangentObject: Local Personality is not required for Tangent_{availableTangent.tangentName}");
                 }
             }
             else

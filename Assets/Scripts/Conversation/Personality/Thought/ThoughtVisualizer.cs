@@ -9,7 +9,7 @@ public class ThoughtVisualizer : MonoBehaviour
 {
     [SerializeField] private GameObject thoughtButtonPrefab = null;
     [SerializeField] private List<GameObject> thoughtButtonObjects = new List<GameObject>();
-    [SerializeField] private int maxDisplayedThoughButtons = 5;
+    [SerializeField] private int maxDisplayedThoughButtons = 4;
 
     private void Update()
     {
@@ -44,18 +44,24 @@ public class ThoughtVisualizer : MonoBehaviour
         }
 
         GameObject thoughtButtonObject = Instantiate(thoughtButtonPrefab);
-        thoughtButtonObject.transform.parent = this.transform;
+        thoughtButtonObject.name = $"ThoughtButton_{thought.text}";
+        thoughtButtonObject.transform.SetParent(this.transform);
 
         thoughtButtonObject.GetComponent<ThoughtButton>().Initialize(thought);
         
         thoughtButtonObjects.Add(thoughtButtonObject);
     }
 
-    public Thought CaptureSelectedThought(Turn turn)
+    public Thought CaptureSelectedThoughtFromTurn(Turn turn)
     {
         GameObject selectedThoughtButtonObject = null;
         foreach (GameObject thoughtButtonObject in thoughtButtonObjects)
         {
+            Thought thought = thoughtButtonObject.GetComponent<ThoughtButton>().GetThought();
+            if (thought.tangentName != turn.tangentName)
+            {
+                continue;
+            }
             if (!thoughtButtonObject.GetComponent<ThoughtButton>().GetIsSelected())
             {
                 continue;
@@ -68,29 +74,30 @@ public class ThoughtVisualizer : MonoBehaviour
         {
             return null;
         }
+        Debug.Log($"CaptureSelectedThoughtFromTurn: turn.tangentName_{turn.tangentName} selectedThoughtButtonObject_{selectedThoughtButtonObject.name}, ");
 
-        thoughtButtonObjects.Remove(selectedThoughtButtonObject);
+        return selectedThoughtButtonObject.GetComponent<ThoughtButton>().GetThought();
+    }
 
-        Thought selectedThought = selectedThoughtButtonObject.GetComponent<ThoughtButton>().GetThought();
-
+    public void ClearTangentThoughts(string tangentName)
+    {
+        Debug.Log($"ClearTangentThoughts: ThoughtVisualizer_{name}, tangentName_{tangentName}");
         List<GameObject> unselectedThoughtButtonObjects = new List<GameObject>();
         foreach (GameObject thoughtButtonObject in thoughtButtonObjects)
         {
             Thought thought = thoughtButtonObject.GetComponent<ThoughtButton>().GetThought();
 
-            if(thought.tangentName == selectedThought.tangentName)
+            if (thought.tangentName == tangentName)
             {
                 unselectedThoughtButtonObjects.Add(thoughtButtonObject);
+                Debug.Log($"ClearTangentThoughts: Found Thought_{thought.text} from tangent_{thought.tangentName}");
             }
         }
 
-        Destroy(selectedThoughtButtonObject);
         foreach (GameObject unselectedThoughtButtonObject in unselectedThoughtButtonObjects)
         {
             thoughtButtonObjects.Remove(unselectedThoughtButtonObject);
             Destroy(unselectedThoughtButtonObject);
         }
-
-        return selectedThought;
     }
 }

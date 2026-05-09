@@ -1,16 +1,38 @@
-#Pers: Player
-Line 1 - A Warm Summer Day 
-Line 2 - Good for walking to the grocery store #Time: 4
-Line 3 - What do you think Darius?
-#Pers: Bob
-Line 4 - I really really don't want to go Maddy.
-#Pers: Player
-Line 5 - Huh?
- + This was your idea! # Pers: Player
- + [he lacks discipline]
-    You're being lazy # Pers: Player
- - # Pers: Bob
-    Line 7 - ok. Let's go 
-# Pers: Player
-Line 8 - My shoes are already on...
+
+#Pers: Andy
+I'm heading to bed.
+->Start
+
+=== Start ===
+ * [Is she going to go to bed? # Pers: Player]
+    # Pers: Player
+    You're going to bed? 
+    # Pers: Andy
+    Yeah why do you ask?
+ * [Are they okay? # Pers: Andy]
+    # Pers: Andy
+    Are you doing okay?
+    # Pers: Player
+    I mean I got all these dishes.
+    Taking my time
+    # Pers: Andy
+    Just come to bed!
+ + [Pick Tangent 1 #Pers: Player]
+    # StartTangent: MovingInTogether
+ + [Pick Tangent 2 #Pers: Player]
+    # StartTangent: StartingAYoutubeSeries
+ + [That bag wasn't the solution I needed. # Pers: Player]
+    -> ALoan
+ - I'm not ready for bed. # Pers: Player
+#Pers: Andy
+But I need to go to bed.
+-> Start
+->DONE
  
+=== ALoan === 
+NULL # Pers: Player #StartTangent: ALoan
++ [I want to go to bed #Pers: Andy]
+    #Pers: Andy
+    Ok, I need to go to bed.
+
+-> Start

@@ -32,6 +32,7 @@ public class TangentSituationalData
 public class Tangent : MonoBehaviour
 {
     [Header("Ink")]
+    [SerializeField] public string tangentName;
     [SerializeField] private TextAsset inkStoryAsset;
     [SerializeField] private bool shouldOutputSituationRequisites = false;
 
@@ -41,6 +42,10 @@ public class Tangent : MonoBehaviour
     [SerializeField] private TangentSituationalData tangentSituationalData;
     [SerializeField] private bool isTangentDone = false;
     [SerializeField] private GameObject conversationSituationObject = null;
+    [SerializeField] private List<Thought> unclaimedThoughts;
+    [SerializeField] private string lastArticulationText = "";
+    [SerializeField] private string lastPersonalityTagValue = "";
+
 
 
 
@@ -56,23 +61,6 @@ public class Tangent : MonoBehaviour
         inkStory.Continue();
 
         BuildTangentSituationalData();
-    }
-
-
-    public void Handle()
-    {
-        // 
-        if (inkStory.canContinue)
-        {
-            // if ink should continue
-            // move forward (incorporate player choice)
-            // collect next line
-            // pass thoughts or speech
-        }
-        else
-        {
-            //end the tangent
-        }
     }
 
     public bool GetIsTangentValid()
@@ -123,7 +111,7 @@ public class Tangent : MonoBehaviour
         {
             if (null == completedTurn.chosenThought)
             {
-                Debug.Log($"Error: ReceiveCompletedTurn: Tangent_{this.gameObject.name} completedTurn.chosenThought is null with completedTurn.thoughts.Count_{completedTurn.thoughts.Count}");
+                Debug.Log($"Error: ReceiveCompletedTurn: tangentName_{tangentName} completedTurn.chosenThought is null with completedTurn.thoughts.Count_{completedTurn.thoughts.Count}");
                 completedTurn.chosenThought = completedTurn.thoughts[0];
             }
 
@@ -131,35 +119,62 @@ public class Tangent : MonoBehaviour
             inkStory.Continue();
         }
 
-        Debug.Log($"ReceiveCompletedTurn: Tangent_{this.gameObject.name} shouldCaptureNextTurn set to true");
+        Debug.Log($"ReceiveCompletedTurn: tangentName_{tangentName} shouldCaptureNextTurn set to true");
         shouldCaptureNextTurn = true;
     }
 
     public Turn CaptureNextTurn()
     {
-        //Debug.Log($"CaptureNextTurn: Tangent_{this.gameObject.name}");
+        //Debug.Log($"CaptureNextTurn: Tangent_{tangentName}");
         if (!shouldCaptureNextTurn)
         {
             return null;
         }
+
         if (isTangentDone)
         {
-            //Debug.Log($"Error: CaptureNextTurn: tangent_{this.name} is done");
+            //Debug.Log($"Error: CaptureNextTurn: tangent_{tangentName} is done");
             return null;
+        }
+
+        Turn nextTurn = new Turn();
+        if (unclaimedThoughts.Count > 0)
+        {
+            nextTurn.tangentName = tangentName;
+            nextTurn.personalityName = unclaimedThoughts[0].personalityName;
+            nextTurn.isThinkingTurn = true;
+
+            foreach (Thought unclaimedThought in unclaimedThoughts)
+            {
+                if (unclaimedThought.personalityName == nextTurn.personalityName)
+                {
+                    nextTurn.thoughts.Add(unclaimedThought);
+                }
+            }
+
+            foreach (Thought thought in nextTurn.thoughts)
+            {
+                unclaimedThoughts.Remove(thought);
+            }
+            if (unclaimedThoughts.Count == 0)
+            {
+                shouldCaptureNextTurn = false;
+            }            
+            
+            return nextTurn;
         }
 
         string personalityTagValue = GetPersonalityTagValue(inkStory.currentTags);
         if ("null" == personalityTagValue)
         {
-            Debug.Log($"Error: CaptureNextTurn: inkStory.currentText_{inkStory.currentText} does not have a personality tag");
+            Debug.Log($"Error: CaptureNextTurn: inkStory does not have a personality tag. inkStory.currentTags_{inkStory.currentTags}, inkStory.currentText_{inkStory.currentText} "); 
             return null;
         }
 
-        Turn nextTurn = new Turn();
         string articulationText = "";
-        nextTurn.tangentName = this.gameObject.name;
+        nextTurn.tangentName = tangentName;
         nextTurn.personalityName = personalityTagValue;
-
+        nextTurn.isThinkingTurn = false;
         nextTurn.articulations.Add(BuildArticulation(inkStory.currentText, inkStory.currentTags));
         articulationText += inkStory.currentText;
 
@@ -191,10 +206,11 @@ public class Tangent : MonoBehaviour
             {
                 if(inkStory.currentChoices.Count > 0) // choices 
                 {
-                    nextTurn.thoughts = BuildThoughts(inkStory.currentChoices);
+                    nextTurn.isThinkingTurn = true;
+                    nextTurn.thoughts = BuildThoughts(inkStory.currentChoices, nextTurn.personalityName);
                     foreach (Thought thought in nextTurn.thoughts)
                     {
-                        nextTurn.thoughtText += $"Tangent_{name}, ThoughtIdx_{thought.tangentChoiceIdx}: {thought.text}\n";
+                        nextTurn.thoughtText += $"Tangent_{tangentName}, ThoughtIdx_{thought.tangentChoiceIdx}: {thought.text}\n";
                     }
                 }
                 else // done
@@ -208,10 +224,14 @@ public class Tangent : MonoBehaviour
         }
 
         nextTurn.articulationText = articulationText;
-        Debug.Log($"CaptureNextTurn: nextTurn tangentName_{this.gameObject.name}, personalityName_{nextTurn.personalityName}\narticulationText:\n{nextTurn.articulationText}thoughtText:\n{nextTurn.thoughtText}");
+        //Debug.Log($"CaptureNextTurn: nextTurn tangentName_{tangentName}, personalityName_{nextTurn.personalityName}\narticulationText:\n{nextTurn.articulationText}thoughtText:\n{nextTurn.thoughtText}");
 
-        shouldCaptureNextTurn = false;
-
+        if (unclaimedThoughts.Count == 0)
+        {
+            shouldCaptureNextTurn = false;
+        }
+        lastArticulationText = articulationText;
+        lastPersonalityTagValue = personalityTagValue;
         return nextTurn;
     }
 
@@ -222,18 +242,39 @@ public class Tangent : MonoBehaviour
         articulation.length = text.Length;
         articulation.speedFactor = GetSpeedFactorTagValue(tags);
         articulation.bufferTime = GetBufferTimeTagValue(tags);
+        string startTangentTagValue = GetStartTangentTagValue(tags);
+        if (startTangentTagValue != "null")
+        {
+            Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE1");
+            articulation.newTangentName = startTangentTagValue;
+            articulation.shouldStartNewTangent = true;
+        }
 
         Debug.Log($"BuildArticulation: articulation: length_{articulation.length}\nspeedFactor_{articulation.speedFactor}\nbufferTime_{articulation.bufferTime}\ntext:\n{articulation.text}");
 
         return articulation;
     }
-    private List<Thought> BuildThoughts(List<Choice> choices)
+    private List<Thought> BuildThoughts(List<Choice> choices, string personalityName)
     {
         List<Thought> thoughts = new List<Thought>();
 
         foreach (Choice choice in choices)
         {
-            thoughts.Add(BuildThought(choice));
+            string personalityTagValue = GetPersonalityTagValue(choice.tags);
+            if (personalityTagValue == "null" ||
+                personalityTagValue == personalityName)
+            {
+                Thought thought = BuildThought(choice);
+                thought.personalityName = personalityName;
+                thoughts.Add(thought);
+            }
+            else
+            {
+                Thought thought = BuildThought(choice);
+                thought.personalityName = personalityTagValue;
+                unclaimedThoughts.Add(thought);
+                Debug.Log($"BuildThoughts: thought: idx_{thought.tangentChoiceIdx} text_{thought.text} has a seperate personalityTagValue_{personalityTagValue}");
+            }
         }
 
         return thoughts;
@@ -241,7 +282,7 @@ public class Tangent : MonoBehaviour
     private Thought BuildThought(Choice choice)
     {
         Thought thought = new Thought();
-        thought.tangentName = this.name;
+        thought.tangentName = this.tangentName;
         thought.tangentChoiceIdx = choice.index;
         thought.text = choice.text;
 
@@ -310,5 +351,12 @@ public class Tangent : MonoBehaviour
         }
 
         return bufferTimeTagValue;
+    }
+    private string GetStartTangentTagValue(List<string> tags)
+    {
+        string personalityTagKey = "StartTangent";
+        string personalityTagValue = GetTagValueString(personalityTagKey, tags);
+
+        return personalityTagValue;
     }
 }

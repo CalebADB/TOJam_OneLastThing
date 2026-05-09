@@ -9,10 +9,11 @@ using UnityEngine;
 [Serializable]
 public class Thought
 {
-    public string tangentName = "null";
-    public int tangentChoiceIdx = -1;
-
     public string text = "";
+
+    public string tangentName = "null";
+    public string personalityName = "null";
+    public int tangentChoiceIdx = -1;
 
     public bool isConceived = false;
 }
@@ -42,6 +43,7 @@ public class Turn
     public float articulationTimeRemaining = 1.0f;
     public List<Articulation> articulations = new List<Articulation>();
 
+    public bool isThinkingTurn = false;
     public bool isThinkingComplete = false;
     public string thoughtText = "";
     public List<Thought> thoughts = new List<Thought>();
@@ -68,9 +70,25 @@ public class Personality : MonoBehaviour
         return activeTurns;
     }
 
-    public void RemoveActiveTurn(Turn activeTurn)
+    public void RemoveTangentTurns(string tangentTurnName)
     {
-        activeTurns.Remove(activeTurn);
+        personalityVisualizer.thoughtVisualizer.ClearTangentThoughts(tangentTurnName);
+
+        List<Turn> completeTangentTurns = new List<Turn>();
+        foreach (Turn activeTurn in activeTurns)
+        {
+            if (tangentTurnName == activeTurn.tangentName)
+            {
+                completeTangentTurns.Add(activeTurn);
+            }
+        }
+
+        foreach (Turn completeTangentTurn in completeTangentTurns)
+        {
+            activeTurns.Remove(completeTangentTurn);
+        }
+
+        
     }
 
     public string GetPersonalityName()
@@ -86,7 +104,7 @@ public class Personality : MonoBehaviour
 
     private void HandleTurns()
     {
-        bool isArticulatingTurn = false;
+        bool isArticulatingATurn = false;
         foreach (Turn activeTurn in activeTurns)
         {
             if (activeTurn.isTurnComplete)
@@ -96,11 +114,11 @@ public class Personality : MonoBehaviour
             }
 
             // cycle through articulation
-            if (!isArticulatingTurn &&
-                activeTurn.articulations.Count > 0)
+            if (!isArticulatingATurn &&
+                !activeTurn.isArticulationComplete)
             {
                 Articulate(activeTurn);
-                isArticulatingTurn = true;
+                isArticulatingATurn = true;
             }
 
             Think(activeTurn);
@@ -118,6 +136,11 @@ public class Personality : MonoBehaviour
         if (turn.isArticulationComplete)
         {
             //Debug.Log($"Articulate: activeTurn_{turn.articulationText} from tangent_{turn.tangentName} is Complete");
+            return;
+        }
+        if (turn.articulations.Count == 0)
+        {
+            turn.isArticulationComplete = true;
             return;
         }
 
@@ -153,13 +176,14 @@ public class Personality : MonoBehaviour
             return; 
         }
 
-        if (turn.thoughts.Count == 0)
+        if (turn.thoughts.Count == 0 &&
+            !turn.isThinkingTurn)
         {
             turn.isThinkingComplete = true;
             return;
         }
 
-        Debug.Log($"Think: turn.thoughtText:\n{turn.thoughtText}");
+        //Debug.Log($"Think: turn.thoughtText:\n{turn.thoughtText}");
         foreach (Thought thought in turn.thoughts)
         {
             if (!thought.isConceived)
@@ -172,6 +196,7 @@ public class Personality : MonoBehaviour
         Thought capturedThought = personalityVisualizer.thoughtVisualizer.CaptureSelectedThought(turn); 
         if (capturedThought != null)
         {
+            Debug.Log($"Think: capturedThought.text_{capturedThought.text}");
             turn.chosenThought = capturedThought;
             turn.isThinkingComplete = true;
         }

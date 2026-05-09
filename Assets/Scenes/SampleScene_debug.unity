@@ -1127,6 +1127,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1001 &5606554963006782352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 982856640828177333, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: personalityVisualizer
+      value: 
+      objectReference: {fileID: 1190891213597050919}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327860570811637633, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724675485177454846, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: availableTangentPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724675485177454846, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: 'availableTangentPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7496636242838572787, guid: 2c60aeb6be0adf544ad5f0ec0fb49a7e, type: 3}
+    - target: {fileID: 3724675485177454846, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: 'availableTangentPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7496636242838572787, guid: 2c60aeb6be0adf544ad5f0ec0fb49a7e, type: 3}
+    - target: {fileID: 6338561724580205980, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
+      propertyPath: m_Name
+      value: Andy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad9e5794789a7b246baf376e81a26127, type: 3}
 --- !u!1001 &7887215205553450090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1242,5 +1315,6 @@ SceneRoots:
   - {fileID: 1901635390}
   - {fileID: 318295737}
   - {fileID: 7887215205553450090}
+  - {fileID: 5606554963006782352}
   - {fileID: 834015845}
   - {fileID: 1081449555572570741}

@@ -9,7 +9,7 @@ public class ThoughtVisualizer : MonoBehaviour
 {
     [SerializeField] private GameObject thoughtButtonPrefab = null;
     [SerializeField] private List<GameObject> thoughtButtonObjects = new List<GameObject>();
-    [SerializeField] private int maxDisplayedThoughButtons = 5;
+    [SerializeField] private int maxDisplayedThoughButtons = 4;
 
     private void Update()
     {
@@ -44,7 +44,7 @@ public class ThoughtVisualizer : MonoBehaviour
         }
 
         GameObject thoughtButtonObject = Instantiate(thoughtButtonPrefab);
-        thoughtButtonObject.transform.parent = this.transform;
+        thoughtButtonObject.transform.SetParent(this.transform);
 
         thoughtButtonObject.GetComponent<ThoughtButton>().Initialize(thought);
         
@@ -69,28 +69,30 @@ public class ThoughtVisualizer : MonoBehaviour
             return null;
         }
 
-        thoughtButtonObjects.Remove(selectedThoughtButtonObject);
-
         Thought selectedThought = selectedThoughtButtonObject.GetComponent<ThoughtButton>().GetThought();
 
+        ClearTangentThoughts(selectedThought.tangentName);
+
+        return selectedThought;
+    }
+
+    public void ClearTangentThoughts(string tangentName)
+    {
         List<GameObject> unselectedThoughtButtonObjects = new List<GameObject>();
         foreach (GameObject thoughtButtonObject in thoughtButtonObjects)
         {
             Thought thought = thoughtButtonObject.GetComponent<ThoughtButton>().GetThought();
 
-            if(thought.tangentName == selectedThought.tangentName)
+            if (thought.tangentName == tangentName)
             {
                 unselectedThoughtButtonObjects.Add(thoughtButtonObject);
             }
         }
 
-        Destroy(selectedThoughtButtonObject);
         foreach (GameObject unselectedThoughtButtonObject in unselectedThoughtButtonObjects)
         {
             thoughtButtonObjects.Remove(unselectedThoughtButtonObject);
             Destroy(unselectedThoughtButtonObject);
         }
-
-        return selectedThought;
     }
 }

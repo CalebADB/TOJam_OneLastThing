@@ -34,6 +34,8 @@ public class Conversation : MonoBehaviour
 
     private void HandleActiveTurns()
     {
+        List<Turn> completedTurns = new List<Turn>();
+
         foreach (GameObject personalityObject in personalityObjects)
         {
             Personality personality = personalityObject.GetComponent<Personality>();
@@ -44,11 +46,12 @@ public class Conversation : MonoBehaviour
             }
 
             List<Turn> activeTurns = personalityObject.GetComponent<Personality>().GetActiveTurns();
-            List<Turn> completedTurns = new List<Turn>();
             foreach (Turn activeTurn in activeTurns)
             {
                 if (activeTurn.isTurnComplete)
                 {
+                    Debug.Log($"HandleActiveTurns: activeTurn.tangentName_{activeTurn.tangentName}");
+
                     foreach (GameObject activeTangentObject in activeTangentObjects)
                     {
                         if (activeTangentObject.GetComponent<Tangent>().name == activeTurn.tangentName)
@@ -59,11 +62,18 @@ public class Conversation : MonoBehaviour
                     }
                 }
             }
+        }
+
+        foreach (GameObject personalityObject in personalityObjects)
+        {
             foreach (Turn completedTurn in completedTurns)
             {
-                personalityObject.GetComponent<Personality>().RemoveActiveTurn(completedTurn);
+                personalityObject.GetComponent<Personality>().RemoveTangentTurns(completedTurn.tangentName);
             }
         }
+
+
+
     }
 
     private void HandleNextTurns()

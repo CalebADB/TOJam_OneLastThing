@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class Vibe
 {
-    string name = "";
+    string vibeName = "";
     float value = 0.0f;
     float maxValue = 0.0f;
 }
@@ -15,7 +15,7 @@ public class Vibe
 [Serializable]
 public class Present
 {
-    string name = "";
+    string presentName = "";
     int databaseId = -1; // this should be a hash
     GameObject databaseObject = null;
 }

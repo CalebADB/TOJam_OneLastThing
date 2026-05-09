@@ -22,17 +22,17 @@ I'm heading to bed.
  + [Pick Tangent 2 #Pers: Player]
     # StartTangent: StartingAYoutubeSeries
  + [That bag wasn't the solution I needed. # Pers: Player]
-    # Pers: Player
-    NULL #StartTangent: ALoan
-    + [I want to go to bed #Pers: Andy]
-        #Pers: Andy
-        Ok, I need to go to bed.
-        -> Start
+    -> ALoan
  - I'm not ready for bed. # Pers: Player
 #Pers: Andy
 But I need to go to bed.
 -> Start
 ->DONE
  
+=== ALoan === 
+NULL # Pers: Player #StartTangent: ALoan
++ [I want to go to bed #Pers: Andy]
+    #Pers: Andy
+    Ok, I need to go to bed.
 
- 
+-> Start

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84f2e5dfde164f41920999f81c9a2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tangent
-  name: MidnightOpener
+  tangentName: MidnightOpener
   inkStoryAsset: {fileID: 4900000, guid: 5333b0595188e7b44ab44953b61fd339, type: 3}
   shouldOutputSituationRequisites: 0
   tangentRequirementData:

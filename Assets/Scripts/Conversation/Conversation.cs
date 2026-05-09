@@ -44,7 +44,7 @@ public class Conversation : MonoBehaviour
             Personality personality = personalityObject.GetComponent<Personality>();
             if (personality == null)
             {
-                Debug.Log($"Error: HandleActiveTurns: personalityObject_{personalityObject.name} does not have a personality");
+                Debug.Log($"Error: HandleActiveTurns: personalityName_{personality.personalityName} does not have a personality");
                 continue;
             }
 
@@ -75,7 +75,7 @@ public class Conversation : MonoBehaviour
 
                     foreach (GameObject activeTangentObject in activeTangentObjects)
                     {
-                        if (activeTangentObject.GetComponent<Tangent>().name == activeTurn.tangentName)
+                        if (activeTangentObject.GetComponent<Tangent>().tangentName == activeTurn.tangentName)
                         {
                             activeTangentObject.GetComponent<Tangent>().ReceiveCompletedTurn(activeTurn);
                             completedTurns.Add(activeTurn);
@@ -129,7 +129,7 @@ public class Conversation : MonoBehaviour
     {
         foreach (GameObject activeTangentObject in activeTangentObjects)
         {
-            if(activeTangentObject.GetComponent<Tangent>().name == tangentPrefab.name)
+            if(activeTangentObject.GetComponent<Tangent>().tangentName == tangentPrefab.GetComponent<Tangent>().tangentName)
             {
                 Debug.Log("THROWING A TANTRUM");
                 return;

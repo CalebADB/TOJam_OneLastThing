@@ -61,7 +61,7 @@ public class Personality : MonoBehaviour
     [SerializeField] public PersonalityVisualizer personalityVisualizer = null;
 
     [Header("Data")]
-    [SerializeField] private string personalityName = "";
+    [SerializeField] public string personalityName = "";
     [SerializeField] private List<Turn> activeTurns = new List<Turn>();
     [SerializeField] private float personalityTalkingSpeed = 20.0f; // char/sec
 
@@ -103,7 +103,7 @@ public class Personality : MonoBehaviour
 
     public void AddActiveTurn(Turn nextTurn)
     {
-        Debug.Log($"AddActiveTurn: nextTurn_text:\n{nextTurn.articulationText}");
+        Debug.Log($"AddActiveTurn: personalityName_{personalityName}, nextTurn: tangentName_{nextTurn.tangentName} articulationCount_{nextTurn.articulations.Count}, articulationCount_{nextTurn.thoughts.Count} \narticulationText:\n{nextTurn.articulationText}thoughtText:\n{nextTurn.thoughtText}");
         activeTurns.Add(nextTurn);
     }
 
@@ -157,17 +157,25 @@ public class Personality : MonoBehaviour
 
         if (!turn.articulations[turn.articulationIndex].isCommenced)
         {
-            Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE2");
-
+            Debug.Log($"Articulate: Commencing articulation_{turn.articulations[turn.articulationIndex].text}");
             if (turn.articulations[turn.articulationIndex].shouldStartNewTangent)
             {
-                Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE3");
                 turn.newTangentName = turn.articulations[turn.articulationIndex].newTangentName;
                 turn.shouldStartNewTangent = true;
             }
             
-            personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = turn.articulations[turn.articulationIndex].text;
-            turn.articulationTimeRemaining = CalculateArticulationTime(turn.articulations[turn.articulationIndex]);
+            if ("NULL\n" == turn.articulations[turn.articulationIndex].text)
+            {
+                Debug.Log($"Articulate: We Capture a NULL line");
+                personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = "";
+                turn.articulationTimeRemaining = 0.0f;
+            }
+            else
+            {
+                personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = turn.articulations[turn.articulationIndex].text;
+                turn.articulationTimeRemaining = CalculateArticulationTime(turn.articulations[turn.articulationIndex]);
+            }
+
             turn.articulations[turn.articulationIndex].isCommenced = true;
         }
 
@@ -207,12 +215,18 @@ public class Personality : MonoBehaviour
             }
         }
 
-        Thought capturedThought = personalityVisualizer.thoughtVisualizer.CaptureSelectedThought(turn); 
+        Thought capturedThought = personalityVisualizer.thoughtVisualizer.CaptureSelectedThoughtFromTurn(turn); 
         if (capturedThought != null)
         {
-            Debug.Log($"Think: capturedThought.text_{capturedThought.text}");
-            turn.chosenThought = capturedThought;
-            turn.isThinkingComplete = true;
+            foreach (Turn activeTurn in activeTurns)
+            {
+                if (activeTurn.tangentName == capturedThought.tangentName)
+                {
+                    Debug.Log($"Think: capturedThought.text_{capturedThought.text} with capturedThought.tangentName_{capturedThought.tangentName}");
+                    turn.chosenThought = capturedThought;
+                    turn.isThinkingComplete = true;
+                }
+            }
         }
     }
     private float CalculateArticulationTime(Articulation articulation)

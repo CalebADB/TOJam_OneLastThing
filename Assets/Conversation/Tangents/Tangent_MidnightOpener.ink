@@ -4,7 +4,7 @@ I'm heading to bed.
 ->Start
 
 === Start ===
- * [Is she going to bed? # Pers: Player]
+ * [Is she going to go to bed? # Pers: Player]
     # Pers: Player
     You're going to bed? 
     # Pers: Andy
@@ -22,22 +22,17 @@ I'm heading to bed.
  + [Pick Tangent 2 #Pers: Player]
     # StartTangent: StartingAYoutubeSeries
  + [That bag wasn't the solution I needed. # Pers: Player]
-    ->ALoan
+    # Pers: Player
+    NULL #StartTangent: ALoan
+    + [I want to go to bed #Pers: Andy]
+        #Pers: Andy
+        Ok, I need to go to bed.
+        -> Start
  - I'm not ready for bed. # Pers: Player
 #Pers: Andy
 But I need to go to bed.
 -> Start
 ->DONE
  
-=== Beat_AndyHeadsToBed ===
-# Pers: Andy
-Alright Goodnight
--> DONE
 
-=== ALoan ===
-+ [I want to go to bed #Pers: Andy]
-    #Pers: Andy
-    Ok, I need to go to bed.
-->Start
- 
  

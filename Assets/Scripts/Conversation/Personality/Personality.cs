@@ -28,6 +28,8 @@ public class Articulation
     public float speedFactor = 1.0f;
     public float bufferTime = 0.0f;
     public string forcedAnimId = "null";
+    public bool shouldStartNewTangent = false;
+    public string newTangentName = "";
 }
 [Serializable]
 public class Turn
@@ -48,6 +50,9 @@ public class Turn
     public string thoughtText = "";
     public List<Thought> thoughts = new List<Thought>();
     public Thought chosenThought = null;
+
+    public bool shouldStartNewTangent = false;
+    public string newTangentName = "";
 }
 
 public class Personality : MonoBehaviour
@@ -152,6 +157,15 @@ public class Personality : MonoBehaviour
 
         if (!turn.articulations[turn.articulationIndex].isCommenced)
         {
+            Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE2");
+
+            if (turn.articulations[turn.articulationIndex].shouldStartNewTangent)
+            {
+                Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE3");
+                turn.newTangentName = turn.articulations[turn.articulationIndex].newTangentName;
+                turn.shouldStartNewTangent = true;
+            }
+            
             personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = turn.articulations[turn.articulationIndex].text;
             turn.articulationTimeRemaining = CalculateArticulationTime(turn.articulations[turn.articulationIndex]);
             turn.articulations[turn.articulationIndex].isCommenced = true;

@@ -8,6 +8,8 @@ public class Conversation : MonoBehaviour
     [SerializeField] public List<GameObject> personalityObjects = new List<GameObject>();
     [SerializeField] private GameObject situationObject = null;
     [SerializeField] public List<GameObject> activeTangentObjects = new List<GameObject>();
+    [SerializeField] public List<GameObject> tangentPrefabs = new List<GameObject>();
+    
 
     [SerializeField] public ConversationVisualizer conversationVisualizer = null;
 
@@ -24,13 +26,14 @@ public class Conversation : MonoBehaviour
         situationObject.transform.SetParent(this.transform);
     }
 
-    public void Initialize(List<GameObject> personalityObjects, GameObject tangentOpenerPrefab)
+    public void Initialize(List<GameObject> personalityObjects, GameObject tangentOpenerPrefab, List<GameObject> tangentPrefabs)
     {
         this.personalityObjects = personalityObjects;
-        
+
+        this.tangentPrefabs = tangentPrefabs;
+
         AddTangent(tangentOpenerPrefab);
     }
-
 
     private void HandleActiveTurns()
     {
@@ -48,6 +51,24 @@ public class Conversation : MonoBehaviour
             List<Turn> activeTurns = personalityObject.GetComponent<Personality>().GetActiveTurns();
             foreach (Turn activeTurn in activeTurns)
             {
+                if (activeTurn.shouldStartNewTangent)
+                {
+                    Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE4");
+
+                    foreach (GameObject tangentPrefab in tangentPrefabs)
+                    {
+                        Debug.Log($"WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE5 tangentPrefab.name_{tangentPrefab.GetComponent<Tangent>().tangentName} activeTurn.newTangentName_{activeTurn.newTangentName}");
+                        if (tangentPrefab.GetComponent<Tangent>().tangentName == activeTurn.newTangentName)
+                        {
+                            Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE6");
+                            AddTangent(tangentPrefab);
+                            break;
+                        }
+                    }
+
+                    activeTurn.shouldStartNewTangent = false;
+                }
+
                 if (activeTurn.isTurnComplete)
                 {
                     Debug.Log($"HandleActiveTurns: activeTurn.tangentName_{activeTurn.tangentName}");
@@ -106,6 +127,15 @@ public class Conversation : MonoBehaviour
 
     private void AddTangent(GameObject tangentPrefab)
     {
+        foreach (GameObject activeTangentObject in activeTangentObjects)
+        {
+            if(activeTangentObject.GetComponent<Tangent>().name == tangentPrefab.name)
+            {
+                Debug.Log("THROWING A TANTRUM");
+                return;
+            }    
+        }
+
         GameObject tangentObject = Instantiate(tangentPrefab);
         tangentObject.transform.SetParent(this.transform);
 

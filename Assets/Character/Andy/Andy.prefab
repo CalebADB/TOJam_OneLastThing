@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
       propertyPath: m_Name
-      value: Rig-v1
+      value: Andy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
       propertyPath: m_IsActive
@@ -68,6 +68,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6288599254280829885}
   m_SourcePrefab: {fileID: 100100000, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
+--- !u!137 &347731253537336737 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6356146495347222315, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
+  m_PrefabInstance: {fileID: 2529067834497627508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &508598124086072269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6622566860014721351, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
@@ -92,14 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FaceController
   eyeLeft: {fileID: 4686973953246265949}
   eyeRight: {fileID: 508598124086072269}
-  faceRenderer: {fileID: 8812728328315163704}
+  faceRenderer: {fileID: 347731253537336737}
 --- !u!4 &4686973953246265949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2156533515291166935, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
-  m_PrefabInstance: {fileID: 2529067834497627508}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &8812728328315163704 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -2786579786235403956, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
   m_PrefabInstance: {fileID: 2529067834497627508}
   m_PrefabAsset: {fileID: 0}

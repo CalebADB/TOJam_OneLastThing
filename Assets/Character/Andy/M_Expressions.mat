@@ -57,11 +57,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EyeWhiteTexture:
-        m_Texture: {fileID: 2800000, guid: 08a4eb9cf8710a949819030046805038, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8a8091cdbdf28cf4dbde9fa3eded6b1a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FaceTexture:
-        m_Texture: {fileID: 2800000, guid: 3b889b3a81ba615478befb32adee9587, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f9c60fad887abd408ecea095ddc283b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Face_Texture:

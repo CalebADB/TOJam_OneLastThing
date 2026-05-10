@@ -21,10 +21,10 @@ MonoBehaviour:
     eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
   - id: A3
     faceTexture: {fileID: 2800000, guid: e3702238b63b60f47bd7fdbe95f811ad, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 94f08b0c2a98c3f4c8e39118598f8a3e, type: 3}
   - id: A5
     faceTexture: {fileID: 2800000, guid: 10674b5633c95d44fab6d58acb07ae65, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 94f08b0c2a98c3f4c8e39118598f8a3e, type: 3}
   - id: E1
     faceTexture: {fileID: 2800000, guid: 6b5a4512087ef824d8fab37ac3bb931a, type: 3}
     eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}

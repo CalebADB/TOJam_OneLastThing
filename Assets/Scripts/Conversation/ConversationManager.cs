@@ -15,6 +15,9 @@ public class ConversationManager : MonoBehaviour
     [SerializeField] private List<GameObject> activeConversationObjects;
     [SerializeField] public List<GameObject> tangentPrefabs = new List<GameObject>();
 
+    [Header("Audio")]
+    [SerializeField] private AudioSituationGenerator audioSituationGenerator = null;
+
     private void Awake()
     {
         if (instance != null)
@@ -51,7 +54,7 @@ public class ConversationManager : MonoBehaviour
 
         GameObject conversationObject = new GameObject("Conversation");
         conversationObject.transform.SetParent(this.transform);
-        conversationObject.AddComponent<Conversation>().Initialize(personalityObjects, tangentOpenerPrefab, tangentPrefabs);
+        conversationObject.AddComponent<Conversation>().Initialize(personalityObjects, tangentOpenerPrefab, tangentPrefabs, audioSituationGenerator);
         activeConversationObjects.Add(conversationObject);
         //GameObject conversationVisualizerObject = Instantiate(conversationVisualizerPrefab);
         //conversationVisualizerObject.transform.SetParent(this.transform);

@@ -69,4 +69,8 @@ public class FMODEvents : MonoBehaviour
         }
         instance = this;
     }
+
+    private void Update()
+    {
+    }
 }

@@ -30,11 +30,6 @@ namespace Dishes
             ResolveDirt();
         }
 
-        public void ShowAndDirty()
-        {
-
-        }
-
         public void Show()
         {
             gameObject.SetActive(true);
@@ -52,7 +47,7 @@ namespace Dishes
             ResolveDirt();
         }
 
-        public void DirtySinkDish()
+        public void GetDirtySinkDish()
         {
             gameObject.SetActive(true);
             RandomizeDirt(DirtyRandomizationType.FromSoapWater);

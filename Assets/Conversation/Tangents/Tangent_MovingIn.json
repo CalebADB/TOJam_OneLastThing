@@ -1,0 +1,1 @@
+﻿{"inkVersion":21,"root":[[{"->":"TheBag"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"TheBag":[{"->":"TheContract"},{"#f":1}],"TheContract":[{"->":"TheRequest"},{"#f":1}],"TheRequest":["done",{"#f":1}],"#f":1}],"listDefs":{}}

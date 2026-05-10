@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{a7a3b88c-5f79-414a-8f54-76056ef56bf5}">
+		<property name="name">
+			<value>IndifferenceUnheard</value>
+		</property>
+		<relationship name="folder">
+			<destination>{02b29acb-5a70-47f2-bad9-15eb834c7200}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{1d41bc74-6f6a-4fdd-8f1c-6a12016441b9}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{1d41bc74-6f6a-4fdd-8f1c-6a12016441b9}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

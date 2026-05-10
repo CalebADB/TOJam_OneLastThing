@@ -27,16 +27,18 @@ Oh well, I mean I'm ok. Maybe I'm a little tense lately. But don't you think its
 Can't I just lend you the money?
 #pers: Alex 
 +[I hate that I need to borrow money right now. Why am always broke?]
-I'm just trying to figure a bunch of stuff out right now. And it feels more efficient to live together you know?
+    I'm just trying to figure a bunch of stuff out right now. And it feels more efficient to live together you know?
+->ResistControl
 +[They doesn't get it. If they get into trouble Mommy and Daddy will bail them out]
-I feel like you maybe don't understand how I feel about my situation.
+    I feel like you maybe don't understand how I feel about my situation.
+->ResistControl
 
 === ResistControl ===  
 #Pers: Andy 
 oh. hmm well... 
  + [I don't want to be stuck here all the time, I need my space.]
-I dunno Alex, I need lot of alone time or I go a bit nuts you know?
+    I dunno Alex, I need lot of alone time or I go a bit nuts you know?
  + [If i move in they're going be bothering me about what I eat, I know they will ]
-I kind of like to 
+-I kind of like to 
 -> DONE
  

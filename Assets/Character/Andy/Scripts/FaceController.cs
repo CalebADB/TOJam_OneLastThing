@@ -35,9 +35,9 @@ public class FaceController : MonoBehaviour
     {
         if(visualGenerator == null)
             return;
-
-        if (visualGenerator.GetShouldUpdatePose())
+        if (visualGenerator.GetShouldUpdateFace())
         {
+            
             string nextFaceId = visualGenerator.CaptureFaceId();
             ApplyFace(nextFaceId);
         }
@@ -61,6 +61,7 @@ public class FaceController : MonoBehaviour
     }
     private void ApplyFace(string id)
     {
+        Debug.Log($"Applying Face with id {id}");
         Face face = faceTable.GetFaceById(id);
         if(face == null) return;
         if (face.faceTexture == null) return;

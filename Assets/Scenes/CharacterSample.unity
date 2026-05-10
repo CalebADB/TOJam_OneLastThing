@@ -435,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rig-v1
       objectReference: {fileID: 0}
+    - target: {fileID: 5284432857999460616, guid: bd9c4d3104da11e4a938e21b7e2d79d8, type: 3}
+      propertyPath: placeholderPoseClip
+      value: 
+      objectReference: {fileID: 9014268210442870009, guid: ccc61d0e11246e5478152bf8e19ceef7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

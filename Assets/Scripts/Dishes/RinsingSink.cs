@@ -5,6 +5,8 @@ namespace Dishes
 {
     public class RinsingSink : MonoBehaviour
     {
+        public bool NeedToDryDish => PreppingDish && _rinsedDish;
+        public bool NeedToRinseDish => PreppingDish && !_rinsedDish;
         public bool AcceptingDishes => !PreppingDish;
 
         public Dish.DishType PreppedDish;
@@ -24,30 +26,39 @@ namespace Dishes
 
         public void TryMoveDish()
         {
+            if (!AcceptingDishes) return;
             if (DishWasher.Instance.DirtySinkMgr.TryRemoveDish(out Dish.DishType dish))
             {
                 PreppedDish = dish;
+                _rinsedDish = false;
                 ResolvePreppedDish();
             }
         }
 
         public void RunTap()
         {
-            if (PreppingDish) _rinsedDish = true;
+            if (PreppingDish) _rinsedDish = true; // you can keep rinsing its fine
+
+            // TODO: Run particles
+
+            DishWasher.Instance.ResolveObjective();
         }
 
         public void MoveDishToRack()
         {
-            if (PreppingDish && _rinsedDish)
+            if (NeedToDryDish)
             {
                 PreppedDish = Dish.DishType.None;
                 ResolvePreppedDish();
                 Debug.Log("play glass clink");
+                if (Random.Range(0, 4) == 0)
+                    DishWasher.Instance.DishSpawnMgr.AddLoad();
             }
         }
 
         public bool MoveDishHere(Dish.DishType type)
         {
+            throw new System.ApplicationException("not used");
             if (!AcceptingDishes) return false;
 
             _rinsedDish = false;
@@ -66,18 +77,20 @@ namespace Dishes
             switch (PreppedDish)
             {
                 case Dish.DishType.Plate:
-                    PreppedPlate.DirtySinkDish();
+                    PreppedPlate.Show();
                     break;
                 case Dish.DishType.Glass:
-                    PreppedGlass.DirtySinkDish();
+                    PreppedGlass.Show();
                     break;
                 case Dish.DishType.Fork:
-                    PreppedFork.DirtySinkDish();
+                    PreppedFork.Show();
                     break;
                 case Dish.DishType.Knife:
-                    PreppedKnife.DirtySinkDish();
+                    PreppedKnife.Show();
                     break;
             }
+
+            DishWasher.Instance.ResolveObjective();
         }
     }
 }

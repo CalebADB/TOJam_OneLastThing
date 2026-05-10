@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Dishes {
+namespace Dishes
+{
     public class DishSpawnerManager : MonoBehaviour
     {
         public DishSpawner PlateSpawner;
@@ -22,6 +23,13 @@ namespace Dishes {
             };
         }
 
+        protected void Start()
+        {
+            AddLoad();
+            AddLoad();
+            AddLoad();
+        }
+
         public bool TryTakeDish(Dish.DishType type)
         {
             if (!_dishSpawnerDictionary.ContainsKey(type)) return false;
@@ -36,7 +44,7 @@ namespace Dishes {
 
         public void AddLoad()
         {
-            Debug.Log("sdlkfjsdlk");
+            Debug.Log("Added Dishes!");
             _dishSpawnerDictionary[Dish.DishType.Plate].AddDishes(Random.Range(0, 4));
             _dishSpawnerDictionary[Dish.DishType.Glass].AddDishes(Random.Range(0, 4));
             _dishSpawnerDictionary[Dish.DishType.Fork].AddDishes(Random.Range(0, 4));
@@ -70,7 +78,15 @@ namespace Dishes {
             if (!NextStage.AcceptingDishes) return;
 
             if (NextStage.AddDish(type))
+            {
                 _dishSpawnerDictionary[type].RemoveDish();
+
+                if (_dishSpawnerDictionary[Dish.DishType.Plate].Inventory <= 0 && _dishSpawnerDictionary[Dish.DishType.Glass].Inventory <= 0 && _dishSpawnerDictionary[Dish.DishType.Fork].Inventory <= 0 && _dishSpawnerDictionary[Dish.DishType.Knife].Inventory <= 0)
+                {
+                    AddLoad();
+                    AddLoad();
+                }
+            }
         }
-    } 
+    }
 }

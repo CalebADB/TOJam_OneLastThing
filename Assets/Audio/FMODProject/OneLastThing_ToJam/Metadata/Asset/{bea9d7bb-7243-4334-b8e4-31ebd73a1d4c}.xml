@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{bea9d7bb-7243-4334-b8e4-31ebd73a1d4c}">
+		<property name="assetPath">
+			<value>Indefference/indifference_Unheard/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b93150e9-969d-4292-b66c-b5fd4e80c3ca}</destination>
+		</relationship>
+	</object>
+</objects>

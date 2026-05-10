@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{ed389cf9-d584-426f-ac9b-8b91a4cebf66}">
+		<property name="assetPath">
+			<value>Wanting/wanting_Exhausted/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b93150e9-969d-4292-b66c-b5fd4e80c3ca}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,17 @@
+audio:
+AudioManager
+-Plays all audio at once
+-FMOD
+-3 AudioThemeContainers
+-Handles situation
+--using weights
+-handles transition
+
+AudioThemeContainer
+-manager sends state code
+-returns audio prefab
+
+audioAssetPrefab
+-audio track
+-audio vibe ids 
+

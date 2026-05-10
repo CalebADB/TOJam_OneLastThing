@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoseTable
   m_EditorClassIdentifier: Assembly-CSharp::PoseTable
   poses:
-  - id: Test1
+  - id: default
     animationClip: {fileID: 3293749814519828751, guid: ddd3d3e7b870a7d45b99a66c01edbdf2, type: 3}
-  - id: Test2
+  - id: A4F2
     animationClip: {fileID: -2935008504683958723, guid: 02ae2213f5c46804cad1454c2c2450f7, type: 3}

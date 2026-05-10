@@ -708,28 +708,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Situation
   vibes:
-  - vibeName: AlexFear
+  - vibeName: AndyExhausted
     value: 0
     maxValue: 5
-  - vibeName: AlexFrustration
+  - vibeName: AndyUnheard
     value: 0
     maxValue: 5
-  - vibeName: AlexExhaustion
-    value: 0
-    maxValue: 5
-  - vibeName: AlexUnheard
+  - vibeName: AndyAnger
     value: 0
     maxValue: 5
   - vibeName: AndyFear
     value: 0
     maxValue: 5
-  - vibeName: AndyFrustration
+  - vibeName: AlexExhausted
     value: 0
     maxValue: 5
-  - vibeName: AndyExhaustion
+  - vibeName: AlexUnheard
     value: 0
     maxValue: 5
-  - vibeName: AndyUnheard
+  - vibeName: AlexAnger
+    value: 0
+    maxValue: 5
+  - vibeName: AlexFear
     value: 0
     maxValue: 5
   presents: []
@@ -1000,20 +1000,22 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77c107b266516854aa3feaa64a537bbb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterVibeGenerator
-  conversationSituation: {fileID: 0}
-  exhaustedVibeName: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualGenerator
+  shouldIgnoreSituation: 1
+  conversationSituationObject: {fileID: 0}
+  exhaustedVibeName: AndyExhausted
   exhaustedVibeValue: 0
-  unheardVibeName: 
+  unheardVibeName: AndyUnheard
   unheardVibeValue: 0
-  angerVibeName: 
+  angerVibeName: AndyAnger
   angerVibeValue: 0
-  fearVibeName: 
+  fearVibeName: AndyFear
   fearVibeValue: 0
+  defaultId: default
   shouldUpdateFace: 0
-  faceID: 
+  faceID: null
   shouldUpdatePose: 0
-  poseID: 
+  poseID: null
 --- !u!1 &2017941800
 GameObject:
   m_ObjectHideFlags: 0

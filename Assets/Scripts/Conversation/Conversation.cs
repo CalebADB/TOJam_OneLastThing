@@ -21,7 +21,7 @@ public class Conversation : MonoBehaviour
     }
     private void Awake()
     {
-        situationObject = new GameObject();
+        situationObject = new GameObject("ConversationSituation");
         situationObject.AddComponent<Situation>();
         situationObject.transform.SetParent(this.transform);
     }
@@ -31,6 +31,11 @@ public class Conversation : MonoBehaviour
         this.personalityObjects = personalityObjects;
 
         this.tangentPrefabs = tangentPrefabs;
+
+        foreach (GameObject personalityObject in personalityObjects)
+        {
+            personalityObject.GetComponent<Personality>().Initialize(situationObject);
+        }
 
         AddTangent(tangentOpenerPrefab);
     }

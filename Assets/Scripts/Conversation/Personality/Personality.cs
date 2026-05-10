@@ -65,6 +65,16 @@ public class Personality : MonoBehaviour
     [SerializeField] private List<Turn> activeTurns = new List<Turn>();
     [SerializeField] private float personalityTalkingSpeed = 20.0f; // char/sec
 
+    public void Initialize(GameObject conversationSituationObject)
+    {
+        CharacterVisualGenerator characterVisualGenerator = GetComponent<CharacterVisualGenerator>();
+
+        if(characterVisualGenerator != null)
+        {
+            characterVisualGenerator.Initialize(conversationSituationObject);
+        }
+
+    }
     private void Update()
     {
         HandleTurns();

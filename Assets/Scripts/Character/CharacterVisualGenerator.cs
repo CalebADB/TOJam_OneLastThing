@@ -10,36 +10,39 @@ public class CharacterVisualGenerator : MonoBehaviour
         Anger,
         Fear
     }
-
+    [Header("Situation")]
+    [SerializeField] bool shouldIgnoreSituation = true;
 
     [Header("Situation")]
-    [SerializeField] Situation conversationSituation = null;
+    [SerializeField] GameObject conversationSituationObject = null;
 
-    [SerializeField] string exhaustedVibeName = "";
+    [SerializeField] string exhaustedVibeName = "AndyExhausted";
     [SerializeField] float exhaustedVibeValue = 0.0f;
-    [SerializeField] string unheardVibeName = "";
+    [SerializeField] string unheardVibeName = "AndyUnheard";
     [SerializeField] float unheardVibeValue = 0.0f;
-    [SerializeField] string angerVibeName = "";
+    [SerializeField] string angerVibeName = "AndyAnger";
     [SerializeField] float angerVibeValue = 0.0f;
-    [SerializeField] string fearVibeName = "";
+    [SerializeField] string fearVibeName = "AndyFear";
     [SerializeField] float fearVibeValue = 0.0f;
 
     [Header("Character ID Output")]
+    [SerializeField] string defaultId = "default";
+    
     [SerializeField] bool shouldUpdateFace = false;
-    [SerializeField] string faceID = "";
+    [SerializeField] string faceID = "null";
 
     [SerializeField] bool shouldUpdatePose = false;
-    [SerializeField] string poseID = "";
+    [SerializeField] string poseID = "null";
 
-    public void Initialize(Situation conversationSituation)
+    public void Initialize(GameObject conversationSituationObject)
     {
-        this.conversationSituation = conversationSituation;
+        this.conversationSituationObject = conversationSituationObject;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //UpdateVibeValues();
+        UpdateVibeValues();
         CalculateFaceId();
         CalculatePoseId();
     }
@@ -54,8 +57,32 @@ public class CharacterVisualGenerator : MonoBehaviour
         return shouldUpdatePose; 
     }
 
+    public string CaptureFaceId()
+    {
+        shouldUpdateFace = false;
+        return faceID;
+    }
+
+    public string CapturePoseId()
+    {
+        shouldUpdatePose = false;
+        return poseID;        
+    }
+
+
     private void UpdateVibeValues()
     {
+        if (shouldIgnoreSituation)
+        {
+            return;
+        }
+
+        if (conversationSituationObject == null)
+        {
+            Debug.Log("Error: UpdateVibeValues: conversationSituation is null");
+            return;
+        }
+        Situation conversationSituation = conversationSituationObject.GetComponent<Situation>();
         exhaustedVibeValue = conversationSituation.GetVibeValue(exhaustedVibeName);
         unheardVibeValue = conversationSituation.GetVibeValue(unheardVibeName);
         angerVibeValue = conversationSituation.GetVibeValue(angerVibeName);
@@ -64,7 +91,7 @@ public class CharacterVisualGenerator : MonoBehaviour
 
     private void CalculateFaceId()
     {
-        string newFaceId = "default";
+        string newFaceId = defaultId;
 
         VibeType largestVibeType = VibeType.Exhausted;
         VibeType secondLargestVibeType = VibeType.Exhausted;
@@ -132,11 +159,11 @@ public class CharacterVisualGenerator : MonoBehaviour
                 secondLargestVibeType = VibeType.Fear;
             }
         }
-        Debug.Log($"largestVibeValue_{largestVibeValue}, secondLargestVibeValue_{secondLargestVibeValue}");
+        //Debug.Log($"largestVibeValue_{largestVibeValue}, secondLargestVibeValue_{secondLargestVibeValue}");
 
         if (largestVibeValue < 0.8f) // default
         {
-            newFaceId = "default";
+            newFaceId = defaultId;
         }
         else if (largestVibeValue < 2.9f) // first is 1
         {
@@ -205,7 +232,7 @@ public class CharacterVisualGenerator : MonoBehaviour
 
     private void CalculatePoseId()
     {
-        string newPoseId = "default";
+        string newPoseId = defaultId;
 
         VibeType largestVibeType = VibeType.Exhausted;
         VibeType secondLargestVibeType = VibeType.Exhausted;
@@ -273,11 +300,11 @@ public class CharacterVisualGenerator : MonoBehaviour
                 secondLargestVibeType = VibeType.Fear;
             }
         }
-        Debug.Log($"largestVibeValue_{largestVibeValue}, secondLargestVibeValue_{secondLargestVibeValue}");
+        //Debug.Log($"largestVibeValue_{largestVibeValue}, secondLargestVibeValue_{secondLargestVibeValue}");
 
         if (largestVibeValue < 1.2f) // default
         {
-            newPoseId = "default";
+            newPoseId = defaultId;
         }
         else if (largestVibeValue < 3.6f) // first is 2
         {

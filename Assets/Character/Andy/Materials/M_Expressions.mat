@@ -52,6 +52,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EyeTexture:
+        m_Texture: {fileID: 2800000, guid: 1b9460bb6f54fad438ae735fa87109f3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EyeWhiteTexture:
+        m_Texture: {fileID: 2800000, guid: 08a4eb9cf8710a949819030046805038, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Face_Texture:
+        m_Texture: {fileID: 2800000, guid: 3b889b3a81ba615478befb32adee9587, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Faces:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -78,6 +90,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_5a4772366f2045819ea837dc38317d9d_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: cf9e238793c13984e8e64c1c32d4103a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7bc08c696e2344bcbe7bc064b6910bdd_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 1b9460bb6f54fad438ae735fa87109f3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c646810bb3774b70967cb3e02959461a_Texture_1_Texture2D:
@@ -114,6 +130,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _CrossProductLerp: 90
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -131,7 +148,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 23.14
+    - _Rotate: -90
+    - _Scale: 22.7
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -144,12 +162,22 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Body_Tint: {r: 0.7529412, g: 0.47059974, b: 0.3882353, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CrossProduct: {r: 0, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _EyeLPosition: {r: 0, g: 0, b: 0, a: 0}
-    - _EyeLeftOS: {r: 0.0404, g: 1.6, b: 0.1066, a: 0}
-    - _EyeRightOS: {r: -0.0404, g: 1.6, b: 0.0694, a: 0}
-    - _Offset: {r: -0.5, g: -0.5, b: 0, a: 0}
+    - _EyeLeftInvRotOS: {r: 0, g: 0, b: 0, a: 0}
+    - _EyeLeftOS: {r: -0.04, g: 0.63, b: 0.1, a: 0}
+    - _EyeLeftRotOS: {r: 0, g: 0, b: 0, a: 0}
+    - _EyeLeftScale: {r: 1, g: 1, b: 1, a: 0}
+    - _EyeRightInvRotOS: {r: 0, g: 0, b: 0, a: 0}
+    - _EyeRightOS: {r: 0.04, g: 0.63, b: 0.1, a: 0}
+    - _EyeRightRotOS: {r: 0, g: 0, b: 0, a: 0}
+    - _EyeRightScale: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: -0.5, g: -0.5, b: -0.5, a: 0}
+    - _Rotate_Axis: {r: 0, g: 1, b: 0, a: 0}
+    - _Rotate_axis_adjust: {r: 1, g: -1, b: -1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

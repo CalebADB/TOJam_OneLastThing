@@ -43,9 +43,9 @@ public class ThoughtVisualizer : MonoBehaviour
             return;
         }
 
-        GameObject thoughtButtonObject = Instantiate(thoughtButtonPrefab);
+        GameObject thoughtButtonObject = Instantiate(thoughtButtonPrefab, this.transform);
         thoughtButtonObject.name = $"ThoughtButton_{thought.text}";
-        thoughtButtonObject.transform.SetParent(this.transform);
+        thoughtButtonObject.transform.localScale = Vector3.one;
 
         thoughtButtonObject.GetComponent<ThoughtButton>().Initialize(thought);
         

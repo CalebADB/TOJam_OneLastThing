@@ -8,6 +8,7 @@ namespace Dishes
         public DishSpawnerManager DishSpawnMgr;
         public WashingSink DirtySinkMgr;
         public RinsingSink CleanSinkMgr;
+        public UnityEngine.Canvas ObjectiveCanvas;
         public TMPro.TextMeshProUGUI ObjectiveText;
 
         public bool ManagingDish => DirtySinkMgr.PreppingDish || CleanSinkMgr.PreppingDish;
@@ -25,7 +26,7 @@ namespace Dishes
         // Update is called once per frame
         void Update()
         {
-           if(Keyboard.current.jKey.wasPressedThisFrame)
+            if (Keyboard.current.jKey.wasPressedThisFrame)
                 DishSpawnMgr.AddLoad();
             if (DirtySinkMgr.PreppingDish)
                 DoCleaningMinigame();
@@ -39,6 +40,15 @@ namespace Dishes
                 Debug.Log("placeholder cleaning!!");
                 DirtySinkMgr.TestCleaningAttempt();
             }
+        }
+
+        public void SetDishCanvases(bool showing)
+        {
+            DishSpawnMgr.SetCanvas(showing);
+            DirtySinkMgr.SetCanvas(showing);
+            CleanSinkMgr.SetCanvas(showing);
+
+            ObjectiveCanvas.enabled = showing;
         }
 
         public void ResolveObjective()

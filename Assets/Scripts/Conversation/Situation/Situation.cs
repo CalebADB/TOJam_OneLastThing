@@ -107,16 +107,11 @@ public class Situation : MonoBehaviour
 
     public void ModifyVibeValue(string vibeName, float vibeDifference)
     {
-        Debug.Log("OOOOOOOOOOOO6");
-
         bool isVibeFound = false;
         foreach (Vibe vibe in vibes)
         {
-            Debug.Log("OOOOOOOOOOOO7");
             if (vibe.vibeName == vibeName)
             {
-                Debug.Log("OOOOOOOOOOOO8");
-
                 vibe.value += vibeDifference;
                 vibe.value = Mathf.Clamp(vibe.value, 0.0f, vibe.maxValue);
             }

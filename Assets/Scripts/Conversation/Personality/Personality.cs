@@ -197,7 +197,6 @@ public class Personality : MonoBehaviour
 
             foreach (VibeModifier situationVibeDifferenceValue in turn.articulations[turn.articulationIndex].situationVibeDifferenceValues)
             {
-                Debug.Log("OOOOOOOOOOOO5");
                 conversationSituation.ModifyVibeValue(situationVibeDifferenceValue.vibeName, situationVibeDifferenceValue.value);
             }
 

@@ -365,7 +365,6 @@ public class Tangent : MonoBehaviour
     private List<VibeModifier> GetSituationVibeDifferenceValues(List<string> tags)
     {
         List<VibeModifier> situationVibeDifferenceValues = new List<VibeModifier>();
-        Debug.Log("OOOOOOOOOOOO69");
 
         foreach (string tag in tags)
         {
@@ -374,7 +373,6 @@ public class Tangent : MonoBehaviour
             {
                 continue;
             }
-            Debug.Log("OOOOOOOOOOOO1");
 
             string[] splitValue = value.Split('_');
             if (splitValue.Length != 3)
@@ -382,7 +380,6 @@ public class Tangent : MonoBehaviour
                 Debug.Log($"Error: GetSituationVibeDifferenceValues: Found value_{value}, with splitValue.Length_{splitValue.Length}");
                 continue;
             }
-            Debug.Log("OOOOOOOOOOOO2");
 
             VibeModifier vibeModifier = new VibeModifier();
             vibeModifier.vibeName = splitValue[1];
@@ -393,7 +390,6 @@ public class Tangent : MonoBehaviour
                 Debug.Log($"Error: GetSituationVibeDifferenceValues: vibeModifierValue_{vibeModifierValue} is invalid");
                 continue;
             }
-            Debug.Log("OOOOOOOOOOOO3");
 
             vibeModifier.value = vibeModifierValue;
 

@@ -173,6 +173,7 @@ MonoBehaviour:
   personalityName: 
   activeTurns: []
   personalityTalkingSpeed: 20
+  conversationSituationObject: {fileID: 0}
 --- !u!4 &4640629139522356963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2053678442975169641, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}

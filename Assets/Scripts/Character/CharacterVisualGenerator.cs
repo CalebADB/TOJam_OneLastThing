@@ -11,7 +11,7 @@ public class CharacterVisualGenerator : MonoBehaviour
         Fear
     }
     [Header("Situation")]
-    [SerializeField] bool shouldIgnoreSituation = true;
+    [SerializeField] bool shouldIgnoreSituation = false;
 
     [Header("Situation")]
     [SerializeField] GameObject conversationSituationObject = null;

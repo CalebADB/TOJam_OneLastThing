@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7831990883528345587}
   - component: {fileID: 3337984583696434933}
   - component: {fileID: 5386166339830212228}
+  - component: {fileID: 287560311520091146}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -82,3 +83,32 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+--- !u!114 &287560311520091146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369414999669951736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00875d657bd69547aa42b3a9fe1507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  shouldIgnoreSituation: 0
+  conversationSituationObject: {fileID: 0}
+  exhaustedSoundVibe:
+    vibeName: Exhausted
+    value: 0
+  unheardSoundVibe:
+    vibeName: Unheard
+    value: 0
+  indifferenceSoundVibe:
+    vibeName: Indifference
+    value: 0
+  wantingSoundVibe:
+    vibeName: Wanting
+    value: 0
+  rejectingSoundVibe:
+    vibeName: Rejecting
+    value: 0

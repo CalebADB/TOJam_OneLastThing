@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c107b266516854aa3feaa64a537bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualGenerator
-  shouldIgnoreSituation: 1
+  shouldIgnoreSituation: 0
   conversationSituationObject: {fileID: 0}
   exhaustedVibeName: AndyExhausted
   exhaustedVibeValue: 0

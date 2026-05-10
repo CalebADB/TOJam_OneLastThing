@@ -27,6 +27,12 @@ public class AudioManager : MonoBehaviour
     private EventInstance ambienceEventInstance;
     private EventInstance musicEventInstance;
 
+    [SerializeField] private AudioSituationGenerator audioSituationGenerator = null;
+
+    [Header("Debug")]
+    [SerializeField] public bool shouldOutputValues = false;
+
+
     public static AudioManager instance { get; private set; }
 
     private void Awake()
@@ -48,7 +54,6 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("WWWWEEEEEEEEEE1");
         InitializeMusic(FMODEvents.instance.conversationMusic);
     }
 
@@ -58,6 +63,20 @@ public class AudioManager : MonoBehaviour
         musicBus.setVolume(musicVolume);
         ambienceBus.setVolume(ambienceVolume);
         sfxBus.setVolume(SFXVolume);
+
+        HandleSituationVibes();
+
+        if (shouldOutputValues)
+        {
+            musicEventInstance.getParameterByName(audioSituationGenerator.exhaustedSoundVibe.vibeName, out float exhaustedValue);
+            musicEventInstance.getParameterByName(audioSituationGenerator.unheardSoundVibe.vibeName, out float unheardValue);
+            musicEventInstance.getParameterByName(audioSituationGenerator.indifferenceSoundVibe.vibeName, out float indifferenceValue);
+            musicEventInstance.getParameterByName(audioSituationGenerator.wantingSoundVibe.vibeName, out float wantingValue);
+            musicEventInstance.getParameterByName(audioSituationGenerator.rejectingSoundVibe.vibeName, out float rejectingValue);
+
+            Debug.Log($"exhaustedValue: {exhaustedValue}, unheardValue: {unheardValue}, indifferenceValue: {indifferenceValue}, wantingValue: {wantingValue}, rejectingValue: {rejectingValue} \nexhaustedSoundVibe.value: {audioSituationGenerator.exhaustedSoundVibe.value}, unheardSoundVibe.value: {audioSituationGenerator.unheardSoundVibe.value}, indifferenceSoundVibe.value: {audioSituationGenerator.indifferenceSoundVibe.value}, wantingSoundVibe.value: {audioSituationGenerator.wantingSoundVibe.value}, rejectingSoundVibe.value: {audioSituationGenerator.rejectingSoundVibe.value}");
+        }
+
     }
 
     private void InitializeAmbience(EventReference ambienceEventReference)
@@ -105,6 +124,21 @@ public class AudioManager : MonoBehaviour
         {
             emitter.Stop();
         }
+    }
+
+    private void HandleSituationVibes()
+    {
+        if (audioSituationGenerator == null)
+        {
+            Debug.Log("AudioManager.HandleSituationVibes: audioSituationGenerator is null");
+            return;
+        }
+
+        musicEventInstance.setParameterByName(audioSituationGenerator.exhaustedSoundVibe.vibeName, audioSituationGenerator.exhaustedSoundVibe.value);
+        musicEventInstance.setParameterByName(audioSituationGenerator.unheardSoundVibe.vibeName, audioSituationGenerator.unheardSoundVibe.value);
+        musicEventInstance.setParameterByName(audioSituationGenerator.indifferenceSoundVibe.vibeName, audioSituationGenerator.indifferenceSoundVibe.value);
+        musicEventInstance.setParameterByName(audioSituationGenerator.wantingSoundVibe.vibeName, audioSituationGenerator.wantingSoundVibe.value);
+        musicEventInstance.setParameterByName(audioSituationGenerator.rejectingSoundVibe.vibeName, audioSituationGenerator.rejectingSoundVibe.value);
     }
 
     private void OnDestroy()

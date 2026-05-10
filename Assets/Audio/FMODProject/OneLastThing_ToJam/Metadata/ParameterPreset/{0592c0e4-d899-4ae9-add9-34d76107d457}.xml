@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{0592c0e4-d899-4ae9-add9-34d76107d457}">
+		<property name="name">
+			<value>IndifferenceExhausted</value>
+		</property>
+		<relationship name="folder">
+			<destination>{02b29acb-5a70-47f2-bad9-15eb834c7200}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{aa6a74b8-c32f-46c0-9baa-c977bd2b0593}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{aa6a74b8-c32f-46c0-9baa-c977bd2b0593}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

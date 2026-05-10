@@ -26,7 +26,7 @@ public class Conversation : MonoBehaviour
         situationObject.transform.SetParent(this.transform);
     }
 
-    public void Initialize(List<GameObject> personalityObjects, GameObject tangentOpenerPrefab, List<GameObject> tangentPrefabs)
+    public void Initialize(List<GameObject> personalityObjects, GameObject tangentOpenerPrefab, List<GameObject> tangentPrefabs, AudioSituationGenerator audioSituationGenerator)
     {
         this.personalityObjects = personalityObjects;
 
@@ -36,6 +36,8 @@ public class Conversation : MonoBehaviour
         {
             personalityObject.GetComponent<Personality>().Initialize(situationObject);
         }
+
+        audioSituationGenerator.Initialize(situationObject);
 
         AddTangent(tangentOpenerPrefab);
     }
@@ -58,14 +60,10 @@ public class Conversation : MonoBehaviour
             {
                 if (activeTurn.shouldStartNewTangent)
                 {
-                    Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE4");
-
                     foreach (GameObject tangentPrefab in tangentPrefabs)
                     {
-                        Debug.Log($"WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE5 tangentPrefab.name_{tangentPrefab.GetComponent<Tangent>().tangentName} activeTurn.newTangentName_{activeTurn.newTangentName}");
                         if (tangentPrefab.GetComponent<Tangent>().tangentName == activeTurn.newTangentName)
                         {
-                            Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE6");
                             AddTangent(tangentPrefab);
                             break;
                         }

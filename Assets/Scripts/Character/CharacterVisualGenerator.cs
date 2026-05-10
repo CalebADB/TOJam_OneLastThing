@@ -17,12 +17,16 @@ public class CharacterVisualGenerator : MonoBehaviour
     [SerializeField] GameObject conversationSituationObject = null;
 
     [SerializeField] string exhaustedVibeName = "AndyExhausted";
+    [Range(0, 5)]
     [SerializeField] float exhaustedVibeValue = 0.0f;
     [SerializeField] string unheardVibeName = "AndyUnheard";
+    [Range(0, 5)]
     [SerializeField] float unheardVibeValue = 0.0f;
     [SerializeField] string angerVibeName = "AndyAnger";
+    [Range(0, 5)]
     [SerializeField] float angerVibeValue = 0.0f;
     [SerializeField] string fearVibeName = "AndyFear";
+    [Range(0, 5)]
     [SerializeField] float fearVibeValue = 0.0f;
 
     [Header("Character ID Output")]

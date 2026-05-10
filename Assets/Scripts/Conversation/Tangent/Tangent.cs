@@ -245,10 +245,13 @@ public class Tangent : MonoBehaviour
         string startTangentTagValue = GetStartTangentTagValue(tags);
         if (startTangentTagValue != "null")
         {
-            Debug.Log("WWWWWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE1");
             articulation.newTangentName = startTangentTagValue;
             articulation.shouldStartNewTangent = true;
         }
+
+        articulation.situationVibeDifferenceValues = GetSituationVibeDifferenceValues(tags);
+        articulation.situationVibeChangeValues = GetSituationVibeChangeValues(tags);
+        
 
         Debug.Log($"BuildArticulation: articulation: length_{articulation.length}\nspeedFactor_{articulation.speedFactor}\nbufferTime_{articulation.bufferTime}\ntext:\n{articulation.text}");
 
@@ -359,4 +362,58 @@ public class Tangent : MonoBehaviour
 
         return personalityTagValue;
     }
+    private List<VibeModifier> GetSituationVibeDifferenceValues(List<string> tags)
+    {
+        List<VibeModifier> situationVibeDifferenceValues = new List<VibeModifier>();
+        Debug.Log("OOOOOOOOOOOO69");
+
+        foreach (string tag in tags)
+        {
+            string value = GetTagValueString("SichInc", new List<string> { tag });
+            if (value == "null")
+            {
+                continue;
+            }
+            Debug.Log("OOOOOOOOOOOO1");
+
+            string[] splitValue = value.Split('_');
+            if (splitValue.Length != 3)
+            {
+                Debug.Log($"Error: GetSituationVibeDifferenceValues: Found value_{value}, with splitValue.Length_{splitValue.Length}");
+                continue;
+            }
+            Debug.Log("OOOOOOOOOOOO2");
+
+            VibeModifier vibeModifier = new VibeModifier();
+            vibeModifier.vibeName = splitValue[1];
+
+
+            if (!float.TryParse(splitValue[2], out float vibeModifierValue))
+            {
+                Debug.Log($"Error: GetSituationVibeDifferenceValues: vibeModifierValue_{vibeModifierValue} is invalid");
+                continue;
+            }
+            Debug.Log("OOOOOOOOOOOO3");
+
+            vibeModifier.value = vibeModifierValue;
+
+
+            situationVibeDifferenceValues.Add(vibeModifier);
+        }
+
+        return situationVibeDifferenceValues;
+    }
+
+    private List<VibeModifier> GetSituationVibeChangeValues(List<string> tags)
+    {
+        List<VibeModifier> situationVibeChangeValues = new List<VibeModifier>();
+
+        foreach (string tag in tags)
+        {
+
+        }
+
+        return situationVibeChangeValues;
+    }
+
 }

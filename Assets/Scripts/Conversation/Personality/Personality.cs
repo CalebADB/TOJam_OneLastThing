@@ -1,3 +1,4 @@
+using Ink.Parsed;
 using Ink.Runtime;
 using System;
 using System.Collections;
@@ -30,6 +31,8 @@ public class Articulation
     public string forcedAnimId = "null";
     public bool shouldStartNewTangent = false;
     public string newTangentName = "";
+    public List<VibeModifier> situationVibeDifferenceValues = new List<VibeModifier>();
+    public List<VibeModifier> situationVibeChangeValues = new List<VibeModifier>();
 }
 [Serializable]
 public class Turn
@@ -64,9 +67,13 @@ public class Personality : MonoBehaviour
     [SerializeField] public string personalityName = "";
     [SerializeField] private List<Turn> activeTurns = new List<Turn>();
     [SerializeField] private float personalityTalkingSpeed = 20.0f; // char/sec
+    [SerializeField] private GameObject conversationSituationObject = null;
+    
 
     public void Initialize(GameObject conversationSituationObject)
     {
+        this.conversationSituationObject = conversationSituationObject;
+
         CharacterVisualGenerator characterVisualGenerator = GetComponent<CharacterVisualGenerator>();
 
         if(characterVisualGenerator != null)
@@ -184,6 +191,14 @@ public class Personality : MonoBehaviour
             {
                 personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = turn.articulations[turn.articulationIndex].text;
                 turn.articulationTimeRemaining = CalculateArticulationTime(turn.articulations[turn.articulationIndex]);
+            }
+
+            Situation conversationSituation = conversationSituationObject.GetComponent<Situation>();
+
+            foreach (VibeModifier situationVibeDifferenceValue in turn.articulations[turn.articulationIndex].situationVibeDifferenceValues)
+            {
+                Debug.Log("OOOOOOOOOOOO5");
+                conversationSituation.ModifyVibeValue(situationVibeDifferenceValue.vibeName, situationVibeDifferenceValue.value);
             }
 
             turn.articulations[turn.articulationIndex].isCommenced = true;

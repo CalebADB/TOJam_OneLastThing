@@ -14,6 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoseTable
   poses:
   - id: default
-    animationClip: {fileID: 3293749814519828751, guid: ddd3d3e7b870a7d45b99a66c01edbdf2, type: 3}
-  - id: A4F2
-    animationClip: {fileID: -2935008504683958723, guid: 02ae2213f5c46804cad1454c2c2450f7, type: 3}
+    animationClip: {fileID: 9014268210442870009, guid: ccc61d0e11246e5478152bf8e19ceef7, type: 3}
+  - id: A2
+    animationClip: {fileID: 5329027324095849588, guid: 1ab47d9f243024a46929c5d4a933c422, type: 3}
+  - id: A4
+    animationClip: {fileID: -3276643132861260984, guid: ba55e5fcb4dd97e48a402f46bf95d3cf, type: 3}
+  - id: E2
+    animationClip: {fileID: 178150048757407332, guid: 671ad26935a5c2940b68e0b81cf9afa4, type: 3}
+  - id: E4
+    animationClip: {fileID: -1816339524660336879, guid: 5502b5ca0d94d1d4e94f663aa14b2927, type: 3}
+  - id: F2
+    animationClip: {fileID: 6726556472454032000, guid: 5c1567824d0f9424e92b1fe81bdccb98, type: 3}
+  - id: F4
+    animationClip: {fileID: 8783168953157325188, guid: 5eb890adba7a2a840b86f6144283d1c3, type: 3}
+  - id: U2
+    animationClip: {fileID: 4921386550864956635, guid: c29b9d8852eda714bb365a9a77d9a1eb, type: 3}
+  - id: U4
+    animationClip: {fileID: -5662856266363274051, guid: 4fa660b6b14776c44b1f883914897ffd, type: 3}

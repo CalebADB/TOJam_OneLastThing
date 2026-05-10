@@ -14,8 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoseTable
   faces:
   - id: default
-    faceTexture: {fileID: 2800000, guid: a6ebca43c6f6bec4183076e3730ccb59, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: 9a2aa1d4dafec224d981e420097402e6, type: 3}
-  - id: A5F3
-    faceTexture: {fileID: 2800000, guid: 3b889b3a81ba615478befb32adee9587, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: 08a4eb9cf8710a949819030046805038, type: 3}
+    faceTexture: {fileID: 2800000, guid: ba8b975d9f09e2747bc47b8703be2822, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+  - id: A1
+    faceTexture: {fileID: 2800000, guid: 900f036cf7e0497488e2390d3037fe71, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+  - id: A3
+    faceTexture: {fileID: 2800000, guid: e3702238b63b60f47bd7fdbe95f811ad, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+  - id: A5
+    faceTexture: {fileID: 2800000, guid: 10674b5633c95d44fab6d58acb07ae65, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+  - id: E1
+    faceTexture: {fileID: 2800000, guid: 6b5a4512087ef824d8fab37ac3bb931a, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+  - id: E3
+    faceTexture: {fileID: 2800000, guid: e3e2138b9ee61cb4580b63adcc781d4f, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1397790be7947234886d3d736af10af3, type: 3}
+  - id: E5
+    faceTexture: {fileID: 2800000, guid: e1b1298c09e893f4cb525143cbf9ab58, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1d456d010db062a439970ae5be4dcf24, type: 3}

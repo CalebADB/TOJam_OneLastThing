@@ -143,7 +143,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _EyeEmission: 2
+    - _EyeEmission: 0.45
     - _GlossMapScale: 1
     - _Glossiness: 0.8147425
     - _GlossyReflections: 1

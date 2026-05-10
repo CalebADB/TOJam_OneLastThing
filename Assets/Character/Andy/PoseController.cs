@@ -10,6 +10,8 @@ public class PoseController : MonoBehaviour
     [Header("Animator Override")]
     [SerializeField] private AnimationClip placeholderPoseClip;
 
+    [SerializeField] private CharacterVisualGenerator visualGenerator;
+    
     private AnimatorOverrideController overrideController;
 
     private void Awake()
@@ -20,33 +22,42 @@ public class PoseController : MonoBehaviour
 
     private void Start()
     {
-        ApplyPoseById("Test2");
+        ApplyPose(0);
     }
 
     private void Update()
     {
-        if (Keyboard.current == null)
+        if(visualGenerator == null)
             return;
-
-        if (Keyboard.current.aKey.wasPressedThisFrame)
+        
+        if (visualGenerator.GetShouldUpdatePose())
         {
-            ApplyPoseById("Test1");
-        }
-        else if (Keyboard.current.dKey.wasPressedThisFrame)
-        {
-            ApplyPoseById("Test2");
+            string nextPoseId = visualGenerator.CapturePoseId();
+            ApplyPose(nextPoseId);
+            Debug.Log($"Changing Pose to {nextPoseId}");
         }
     }
 
-    public void ApplyPoseById(string poseId)
+    public void ApplyPose(string poseId)
     {
         Pose pose = poseTable.GetPoseById(poseId);
+        if (pose == null ) return;
+        if (pose.animationClip == null) return;
         Debug.Log(pose.animationClip.name);
-        if (pose == null || pose.animationClip == null)
-            return;
 
         overrideController[placeholderPoseClip] = pose.animationClip;
 
-        animator.CrossFade("PoseSlot", 0.1f);
+        // animator.CrossFade("PoseSlot", 0.1f);
+    }
+    public void ApplyPose(int index)
+    {
+        Pose pose = poseTable.GetPoseByIndex(index);
+        if (pose == null ) return;
+        if (pose.animationClip == null) return;
+        Debug.Log(pose.animationClip.name);
+
+        overrideController[placeholderPoseClip] = pose.animationClip;
+
+        // animator.CrossFade("PoseSlot", 0.1f);
     }
 }

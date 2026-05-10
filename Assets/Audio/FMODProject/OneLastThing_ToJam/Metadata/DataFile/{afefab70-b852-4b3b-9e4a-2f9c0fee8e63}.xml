@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="DataFile" id="{afefab70-b852-4b3b-9e4a-2f9c0fee8e63}">
+		<property name="assetPath">
+			<value>Indefference/indifference_Exhausted/mus_indifferenceExhausted_intLev2-_7-4_75_15.mp3.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b93150e9-969d-4292-b66c-b5fd4e80c3ca}</destination>
+		</relationship>
+	</object>
+</objects>

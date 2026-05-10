@@ -42,8 +42,9 @@ namespace Dishes
 
         public void CleanSlightly()
         {
-            DirtyPercentage -= IsCutlery ? Random.Range(0, 0.25f) : Random.Range(0, 0.1f);
+            DirtyPercentage -= IsCutlery ? Random.Range(0, 0.25f) : Random.Range(0, 0.2f);
             DirtyPercentage = Mathf.Max(0, DirtyPercentage);
+            Debug.Log(DirtyPercentage);
             ResolveDirt();
         }
 
@@ -63,6 +64,8 @@ namespace Dishes
         {
             for (int i = 0; i < DirtSmears.Length; i++)
             {
+                Debug.Log($"{DirtyPercentage} vs {(float)i / DirtSmears.Length}");
+
                 DirtSmears[i].gameObject.SetActive(DirtyPercentage > (float)i / DirtSmears.Length);
             }
         }

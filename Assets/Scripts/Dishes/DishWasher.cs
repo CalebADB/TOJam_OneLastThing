@@ -10,6 +10,11 @@ namespace Dishes
         public RinsingSink CleanSinkMgr;
         public UnityEngine.Canvas ObjectiveCanvas;
         public TMPro.TextMeshProUGUI ObjectiveText;
+        public UnityEngine.UI.Image CleaningHintImage;
+        public Sprite HintImage_Plate;
+        public Sprite HintImage_Glass;
+        public Sprite HintImage_Fork;
+        public Sprite HintImage_Knife;
 
         public bool ManagingDish => DirtySinkMgr.PreppingDish || CleanSinkMgr.PreppingDish;
 
@@ -37,8 +42,18 @@ namespace Dishes
         {
             if (Keyboard.current.anyKey.wasPressedThisFrame)
             {
-                Debug.Log("placeholder cleaning!!");
-                DirtySinkMgr.TestCleaningAttempt();
+                int pressedCount = 0;
+                foreach (var key in Keyboard.current.allKeys)
+                {
+                    if (key == null) continue;
+                    if (key.isPressed) pressedCount++;
+                }
+
+                if (pressedCount == 1)
+                {
+                    Debug.Log("placeholder cleaning!!");
+                    DirtySinkMgr.TestCleaningAttempt();
+                }               
             }
         }
 
@@ -53,6 +68,7 @@ namespace Dishes
 
         public void ResolveObjective()
         {
+            CleaningHintImage.gameObject.SetActive(false);
             if (CleanSinkMgr.NeedToDryDish)
             {
                 ObjectiveText.text = "Move Dish To Rack";
@@ -67,7 +83,20 @@ namespace Dishes
             }
             else if (DirtySinkMgr.PreppingDish && !DirtySinkMgr.IsDishClean())
             {
-                ObjectiveText.text = "Wash Dish (C)";
+                ObjectiveText.text = "Wash Dish";
+                CleaningHintImage.gameObject.SetActive(true);
+
+                switch (DirtySinkMgr.PreppedDishType)
+                {
+                    case Dish.DishType.Plate:
+                        CleaningHintImage.sprite = HintImage_Plate; break;
+                    case Dish.DishType.Glass:
+                        CleaningHintImage.sprite = HintImage_Glass; break;
+                    case Dish.DishType.Fork:
+                        CleaningHintImage.sprite = HintImage_Fork; break;
+                    case Dish.DishType.Knife:
+                        CleaningHintImage.sprite = HintImage_Knife; break;
+                }
             }
             else if (!DirtySinkMgr.HasSoap)
             {

@@ -34,6 +34,7 @@ namespace Dishes
 
         public bool TryTakeDish(Dish.DishType type)
         {
+            throw new System.InvalidOperationException();
             if (!_dishSpawnerDictionary.ContainsKey(type)) return false;
 
             if (_dishSpawnerDictionary[type].Inventory > 0)

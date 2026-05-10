@@ -19,13 +19,15 @@ namespace Dishes {
 
         [Header("Vars")]
         public List<Dish.DishType> Inventory;
+        public AudioClip AddDishToWaterClip;
 
-        public Dish.DishType PreppedDish;
-        public bool PreppingDish => PreppedDish != Dish.DishType.None;
+        public Dish.DishType PreppedDishType;
+        public bool PreppingDish => PreppedDishType != Dish.DishType.None;
         public Dish PreppedPlate;
         public Dish PreppedGlass;
         public Dish PreppedFork;
         public Dish PreppedKnife;
+        public AudioClip PickupPlateClip;
 
         public CanvasGroup SoapOverlay;
         public float SoapLevelInWater;
@@ -33,10 +35,12 @@ namespace Dishes {
         public ParticleSystem SoapBubbles;
         public Canvas StationCanvas;
 
+        private int _nextCleaningChordIndex;
+
         protected void Start()
         {
             Inventory = new List<Dish.DishType>();
-            PreppedDish = Dish.DishType.None;
+            PreppedDishType = Dish.DishType.None;
             ResolvePreppedDish();
             SoapLevelInWater = StartingSoapValue;
             ResolveSoap();
@@ -68,9 +72,11 @@ namespace Dishes {
             Debug.Log("iuiu");
             // Replaceable Logic 
             int takenDish = Random.Range(0, Inventory.Count - 1);
-            PreppedDish = Inventory[takenDish];
+            PreppedDishType = Inventory[takenDish];
             Inventory.RemoveAt(takenDish);
             ResolvePreppedDish();
+
+            _nextCleaningChordIndex = 0;
         }
 
         public void AddSoap()
@@ -85,7 +91,7 @@ namespace Dishes {
             // minigame validator should track chord index and reference input chords
             // then if it matches, tell current dish to becomeslighly cleaner
 
-            switch (PreppedDish)
+            switch (PreppedDishType)
             {
                 case Dish.DishType.Plate:
                     TestCleaningPlate();
@@ -106,7 +112,7 @@ namespace Dishes {
 
         public bool IsDishClean()
         {
-            switch (PreppedDish)
+            switch (PreppedDishType)
             {
                 case Dish.DishType.Plate:
                     return PreppedPlate.DirtyPercentage <= MinAllowedDirtyPercent;
@@ -128,12 +134,12 @@ namespace Dishes {
         {
             removedDish = Dish.DishType.None;
 
-            switch (PreppedDish)
+            switch (PreppedDishType)
             {
                 case Dish.DishType.Plate:
                     if (PreppedPlate.DirtyPercentage <= MinAllowedDirtyPercent)
                     {
-                        removedDish = PreppedDish;
+                        removedDish = PreppedDishType;
                         ClearPreppedDish();
                         return true;
                     }
@@ -141,7 +147,7 @@ namespace Dishes {
                 case Dish.DishType.Glass:
                     if (PreppedGlass.DirtyPercentage <= MinAllowedDirtyPercent)
                     {
-                        removedDish = PreppedDish;
+                        removedDish = PreppedDishType;
                         ClearPreppedDish();
                         return true;
                     }
@@ -149,7 +155,7 @@ namespace Dishes {
                 case Dish.DishType.Fork:
                     if (PreppedFork.DirtyPercentage <= MinAllowedDirtyPercent)
                     {
-                        removedDish = PreppedDish;
+                        removedDish = PreppedDishType;
                         ClearPreppedDish();
                         return true;
                     }
@@ -157,7 +163,7 @@ namespace Dishes {
                 case Dish.DishType.Knife:
                     if (PreppedKnife.DirtyPercentage <= MinAllowedDirtyPercent)
                     {
-                        removedDish = PreppedDish;
+                        removedDish = PreppedDishType;
                         ClearPreppedDish();
                         return true;
                     }
@@ -173,45 +179,62 @@ namespace Dishes {
 
         private void ClearPreppedDish()
         {
-            PreppedDish = Dish.DishType.None;
+            PreppedDishType = Dish.DishType.None;
             ResolvePreppedDish();
         }
 
+        private readonly KeyCode[] _plateInputArray = new KeyCode[]{KeyCode.W, KeyCode.E, KeyCode.D, KeyCode.X, KeyCode.Z, KeyCode.A};
         private void TestCleaningPlate()
         {
-            // Simplified for now
-            if (Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                Debug.Log("how did you know!!!!");
-                PreppedPlate.CleanSlightly();
-            }
+            TestCleaningGeneric(_plateInputArray[_nextCleaningChordIndex], _plateInputArray.Length);
         }
+        private readonly KeyCode[] _glassInputArray = new KeyCode[] { KeyCode.Q, KeyCode.A, KeyCode.Z, KeyCode.W, KeyCode.S, KeyCode.X, KeyCode.E, KeyCode.D, KeyCode.C };
         private void TestCleaningGlass()
         {
-            // Simplified for now
-            if (Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                Debug.Log("how did you know!!!!");
-                PreppedGlass.CleanSlightly();
-            }
+            TestCleaningGeneric(_glassInputArray[_nextCleaningChordIndex], _glassInputArray.Length);
         }
+        private readonly KeyCode[] _forkInputArray = new KeyCode[] { KeyCode.Z, KeyCode.A, KeyCode.Q, KeyCode.X, KeyCode.S, KeyCode.W };
         private void TestCleaningFork()
         {
-            // Simplified for now
-            if (Keyboard.current.cKey.wasPressedThisFrame)
-            {
-                Debug.Log("how did you know!!!!");
-                PreppedFork.CleanSlightly();
-            }
+            TestCleaningGeneric(_forkInputArray[_nextCleaningChordIndex], _forkInputArray.Length);
         }
+        private readonly KeyCode[] _knifeInputArray = new KeyCode[] { KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y };
         private void TestCleaningKnife()
         {
-            // Simplified for now
-            if (Keyboard.current.cKey.wasPressedThisFrame)
+            TestCleaningGeneric(_knifeInputArray[_nextCleaningChordIndex], _knifeInputArray.Length);
+        }
+        private void TestCleaningGeneric(KeyCode nextCleaningChordKey, int chordLength)
+        {
+            var keycodeClicked = GetClickedKeycode();
+            Debug.Log($"{keycodeClicked} vs {nextCleaningChordKey}");
+            if (keycodeClicked == nextCleaningChordKey)
             {
-                Debug.Log("how did you know!!!!");
+                Debug.Log("Cleaned Slightly");
                 PreppedKnife.CleanSlightly();
+
+                _nextCleaningChordIndex++;
+                if (_nextCleaningChordIndex >= chordLength)
+                    _nextCleaningChordIndex = 0;
             }
+        }
+        private KeyCode GetClickedKeycode()
+        {
+            if (Keyboard.current.qKey.wasPressedThisFrame) return KeyCode.Q;
+            if (Keyboard.current.wKey.wasPressedThisFrame) return KeyCode.W;
+            if (Keyboard.current.eKey.wasPressedThisFrame) return KeyCode.E;
+            if (Keyboard.current.rKey.wasPressedThisFrame) return KeyCode.R;
+            if (Keyboard.current.tKey.wasPressedThisFrame) return KeyCode.T;
+            if (Keyboard.current.yKey.wasPressedThisFrame) return KeyCode.Y;
+
+            if (Keyboard.current.aKey.wasPressedThisFrame) return KeyCode.A;
+            if (Keyboard.current.sKey.wasPressedThisFrame) return KeyCode.S;
+            if (Keyboard.current.dKey.wasPressedThisFrame) return KeyCode.D;
+            if (Keyboard.current.fKey.wasPressedThisFrame) return KeyCode.F;
+
+            if (Keyboard.current.zKey.wasPressedThisFrame) return KeyCode.Z;
+            if (Keyboard.current.xKey.wasPressedThisFrame) return KeyCode.X;
+            if (Keyboard.current.cKey.wasPressedThisFrame) return KeyCode.C;
+            return KeyCode.None;
         }
 
         private void ResolvePreppedDish()
@@ -221,7 +244,7 @@ namespace Dishes {
             PreppedFork.Hide();
             PreppedKnife.Hide();
 
-            switch (PreppedDish) {
+            switch (PreppedDishType) {
                 case Dish.DishType.Plate:
                     PreppedPlate.GetDirtySinkDish();
                     break;

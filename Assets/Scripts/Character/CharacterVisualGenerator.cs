@@ -83,7 +83,7 @@ public class CharacterVisualGenerator : MonoBehaviour
 
         if (conversationSituationObject == null)
         {
-            Debug.Log("Error: UpdateVibeValues: conversationSituation is null");
+            //Debug.Log("Error: UpdateVibeValues: conversationSituation is null");
             return;
         }
         Situation conversationSituation = conversationSituationObject.GetComponent<Situation>();

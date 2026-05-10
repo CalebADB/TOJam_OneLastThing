@@ -16,6 +16,10 @@ public class ConversationStarter : MonoBehaviour
     [Header("Conversation")]
     [SerializeField] private bool shouldStartConversation = true;
     [SerializeField] public GameObject[] availableTangentPrefabs = new GameObject[] { };
+    [SerializeField] public GameObject openerTangentPrefab = null;
+    [SerializeField] public bool isGameJam = false;
+    [SerializeField] public List<GameObject> gameJamPersonalityObjects = new List<GameObject>();
+
 
 
     private void Start()
@@ -39,8 +43,9 @@ public class ConversationStarter : MonoBehaviour
             validTangentObject != null)
         {
             //Debug.Log($"Tanget.Update: validTangentObject_{validTangentObject.name}");
-            icon.SetActive(true);
-            if (Input.isInteractionPressed)
+            if (!isGameJam) icon.SetActive(true);
+            if (Input.isInteractionPressed||
+                isGameJam)
             {
                 bool isConversationStarted = AttemptStartConversation();
                 shouldStartConversation = !isConversationStarted;
@@ -49,7 +54,7 @@ public class ConversationStarter : MonoBehaviour
         else 
         {
             //Debug.Log($"Tanget.Update: no validTangentObject");
-            icon.SetActive(false);
+            if (!isGameJam) icon.SetActive(false);
         }
     }
 
@@ -62,18 +67,25 @@ public class ConversationStarter : MonoBehaviour
 
             List<GameObject> conversationPersonalityObjects = new List<GameObject>();
 
-            Debug.Log($"AttemptStartConversation: Adding personalityObject_{this.gameObject.name}");
-            conversationPersonalityObjects.Add(this.gameObject);
 
-            foreach (string requiredPersonalityName in tangentPrefab.GetComponent<Tangent>().GetTangentRequirementData().requiredPersonalityNames)
+            if(isGameJam)
             {
-                foreach (GameObject localPersonalityObject in personalityInteractionHandler.GetLocalPersonalityObjects())
+                conversationPersonalityObjects = gameJamPersonalityObjects;
+            }
+            else
+            {
+                Debug.Log($"AttemptStartConversation: Adding personalityObject_{this.gameObject.name}");
+                conversationPersonalityObjects.Add(this.gameObject);
+                foreach (string requiredPersonalityName in tangentPrefab.GetComponent<Tangent>().GetTangentRequirementData().requiredPersonalityNames)
                 {
-                    if (requiredPersonalityName == localPersonalityObject.GetComponent<Personality>().GetPersonalityName())
+                    foreach (GameObject localPersonalityObject in personalityInteractionHandler.GetLocalPersonalityObjects())
                     {
-                        Debug.Log($"AttemptStartConversation: Adding localPersonalityObject_{localPersonalityObject.name}");
+                        if (requiredPersonalityName == localPersonalityObject.GetComponent<Personality>().GetPersonalityName())
+                        {
+                            Debug.Log($"AttemptStartConversation: Adding localPersonalityObject_{localPersonalityObject.name}");
 
-                        conversationPersonalityObjects.Add(localPersonalityObject);
+                            conversationPersonalityObjects.Add(localPersonalityObject);
+                        }
                     }
                 }
             }
@@ -87,6 +99,8 @@ public class ConversationStarter : MonoBehaviour
 
     private GameObject GetValidTangentPrefab()
     {
+        if (isGameJam) return openerTangentPrefab;
+
         foreach (GameObject availableTangentPrefab in availableTangentPrefabs)
         {
             //Debug.Log($"GetValidTangentObject: availableTangentObject_{availableTangentPrefab.name}");

@@ -614,7 +614,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1102c20e299fae04d963e9b2464c80c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConversationVisualizer
-  personalityVisualizers: []
+  personalityVisualizers:
+  - {fileID: 6146278666479615061}
+  - {fileID: 3553791743640808980}
 --- !u!223 &5192407612070602655
 Canvas:
   m_ObjectHideFlags: 0

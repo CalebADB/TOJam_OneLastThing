@@ -70,13 +70,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1278238874502317429}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6288599254280829885}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5284432857999460616}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1278238874502317429}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2325445249774611785}
@@ -96,33 +96,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
   m_PrefabInstance: {fileID: 2529067834497627508}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1278238874502317429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3447615578189449253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c107b266516854aa3feaa64a537bbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualGenerator
-  shouldIgnoreSituation: 1
-  conversationSituationObject: {fileID: 0}
-  exhaustedVibeName: AndyExhausted
-  exhaustedVibeValue: 0
-  unheardVibeName: AndyUnheard
-  unheardVibeValue: 0
-  angerVibeName: AndyAnger
-  angerVibeValue: 0
-  fearVibeName: AndyFear
-  fearVibeValue: 0
-  defaultId: default
-  shouldUpdateFace: 0
-  faceID: null
-  shouldUpdatePose: 0
-  poseID: null
 --- !u!114 &6288599254280829885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +130,33 @@ MonoBehaviour:
   animator: {fileID: 8247102890323757285}
   placeholderPoseClip: {fileID: 3293749814519828751, guid: ddd3d3e7b870a7d45b99a66c01edbdf2, type: 3}
   visualGenerator: {fileID: 1278238874502317429}
+--- !u!114 &1278238874502317429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447615578189449253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c107b266516854aa3feaa64a537bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualGenerator
+  shouldIgnoreSituation: 1
+  conversationSituationObject: {fileID: 0}
+  exhaustedVibeName: AndyExhausted
+  exhaustedVibeValue: 0
+  unheardVibeName: AndyUnheard
+  unheardVibeValue: 0
+  angerVibeName: AndyAnger
+  angerVibeValue: 0
+  fearVibeName: AndyFear
+  fearVibeValue: 0
+  defaultId: default
+  shouldUpdateFace: 0
+  faceID: null
+  shouldUpdatePose: 0
+  poseID: null
 --- !u!114 &2325445249774611785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Personality
   personalityVisualizer: {fileID: 0}
-  personalityName: 
+  personalityName: Andy
   activeTurns: []
   personalityTalkingSpeed: 20
   conversationSituationObject: {fileID: 0}

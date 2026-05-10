@@ -27,3 +27,7 @@ MonoBehaviour:
     animationClip: {fileID: 6726556472454032000, guid: 5c1567824d0f9424e92b1fe81bdccb98, type: 3}
   - id: F4
     animationClip: {fileID: 8783168953157325188, guid: 5eb890adba7a2a840b86f6144283d1c3, type: 3}
+  - id: U2
+    animationClip: {fileID: 4921386550864956635, guid: c29b9d8852eda714bb365a9a77d9a1eb, type: 3}
+  - id: U4
+    animationClip: {fileID: -5662856266363274051, guid: 4fa660b6b14776c44b1f883914897ffd, type: 3}

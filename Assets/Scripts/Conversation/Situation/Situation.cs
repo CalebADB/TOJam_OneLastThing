@@ -7,9 +7,9 @@ using UnityEngine;
 [Serializable]
 public class Vibe
 {
-    string vibeName = "";
-    float value = 0.0f;
-    float maxValue = 0.0f;
+    [SerializeField] public string vibeName = "";
+    [SerializeField] public float value = 0.0f;
+    [SerializeField] public float maxValue = 0.0f;
 }
 
 [Serializable]
@@ -24,13 +24,15 @@ public class Situation : MonoBehaviour
 {
     // vibe
     //   float good/bad_vibe = between 1 and 0;
-    List<Vibe> vibes = new List<Vibe>();
+    [SerializeField] List<Vibe> vibes = new List<Vibe>();
     // present
-    List<Present> presents = new List<Present>();
+    [SerializeField] List<Present> presents = new List<Present>();
     //   bool knowsYouCheated
     //   enum currentWeather
     // statuses
     // phases
+
+    [SerializeField] bool hasBeenUpdated = false;
 
     // Update is called once per frame
     void Update()
@@ -76,5 +78,59 @@ public class Situation : MonoBehaviour
                 presents.Add(present);
             }
         }
+    }
+
+    public void SetVibeValue(string vibeName, float vibeValue)
+    {
+        bool isVibeFound = false;
+        foreach (Vibe vibe in vibes)
+        {
+            if (vibe.vibeName == vibeName)
+            {
+                vibe.value = vibeValue;
+                vibe.value = Mathf.Clamp(vibe.value, 0.0f, vibe.maxValue);
+            }
+        }
+
+        if (!isVibeFound)
+        {
+            Debug.Log($"Error: SetVibe: vibeName_{vibeName} was not found");
+        }            
+    }
+
+    public void ModifyVibeValue(string vibeName, float vibeDifference)
+    {
+        bool isVibeFound = false;
+        foreach (Vibe vibe in vibes)
+        {
+            if (vibe.vibeName == vibeName)
+            {
+                vibe.value += vibeDifference;
+                vibe.value = Mathf.Clamp(vibe.value, 0.0f, vibe.maxValue);
+            }
+        }
+
+        if (!isVibeFound)
+        {
+            Debug.Log($"Error: ModifyVibe: vibeName_{vibeName} was not found");
+        }
+    }
+
+    public float GetVibeValue(string vibeName)
+    {
+        bool isVibeFound = false;
+        foreach (Vibe vibe in vibes)
+        {
+            if (vibe.vibeName == vibeName)
+            {
+                return vibe.value;
+            }
+        }
+
+        if (!isVibeFound)
+        {
+            Debug.Log($"Error: SetVibe: vibeName_{vibeName} was not found");
+        }
+        return 0.0f;
     }
 }

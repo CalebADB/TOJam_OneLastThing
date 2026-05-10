@@ -3,8 +3,8 @@
 
 === TheBag ===
 #Pers: Player
-Hey where did your mom get that bag from?
- * [Austria 1 # Pers: Andy]
+Hey where did your mom get that bag from? #SitMinReq
+ * [Austria 1 # Pers: Andy #SReq: Vibe_]
     # Pers: Andy
     Yeah she got the bag at a christmas market pop-up.
     How much did you get for it?
@@ -39,6 +39,7 @@ Hey where did your mom get that bag from?
  
 === TheContract ===
 # Pers: Andy
+What's wrong?
 
 -> DONE
  

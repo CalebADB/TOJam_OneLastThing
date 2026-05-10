@@ -133,7 +133,7 @@ public class Tangent : MonoBehaviour
 
         if (isTangentDone)
         {
-            //Debug.Log($"Error: CaptureNextTurn: tangent_{tangentName} is done");
+            Debug.Log($"Error: CaptureNextTurn: tangent_{tangentName} is done");
             return null;
         }
 

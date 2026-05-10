@@ -145,7 +145,7 @@ public class Conversation : MonoBehaviour
         Situation globalSituation = ConversationManager.GetInstance().GetGlobalSituationObject().GetComponent<Situation>();
         Situation situation = situationObject.GetComponent<Situation>();
         situation.AddRelevantVibes(globalSituation.GetRelevantVibes(tangent.GetTangentSituationalData().vibeNames));
-        situation.AddRelevantPresents(globalSituation.GetRelevantPresents(tangent.GetTangentSituationalData().vibeNames));
+        situation.AddRelevantPresents(globalSituation.GetRelevantPresents(tangent.GetTangentSituationalData().presentFactNames));
 
         activeTangentObjects.Add(tangentObject);
     }

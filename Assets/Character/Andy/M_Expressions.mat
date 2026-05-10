@@ -60,6 +60,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 08a4eb9cf8710a949819030046805038, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FaceTexture:
+        m_Texture: {fileID: 2800000, guid: 3b889b3a81ba615478befb32adee9587, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Face_Texture:
         m_Texture: {fileID: 2800000, guid: 3b889b3a81ba615478befb32adee9587, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -122,6 +126,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AO: 4.49
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -138,6 +143,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _EyeEmission: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.8147425
     - _GlossyReflections: 1
@@ -179,6 +185,7 @@ Material:
     - _Rotate_Axis: {r: 0, g: 1, b: 0, a: 0}
     - _Rotate_axis_adjust: {r: 1, g: -1, b: -1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Specular: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7762428959347492483

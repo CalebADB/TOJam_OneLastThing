@@ -34,21 +34,21 @@ MonoBehaviour:
   - id: E5
     faceTexture: {fileID: 2800000, guid: e1b1298c09e893f4cb525143cbf9ab58, type: 3}
     eyeWhiteTexture: {fileID: 2800000, guid: 1d456d010db062a439970ae5be4dcf24, type: 3}
-  - id: E5
-    faceTexture: {fileID: 2800000, guid: e1b1298c09e893f4cb525143cbf9ab58, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: 1d456d010db062a439970ae5be4dcf24, type: 3}
+  - id: F1
+    faceTexture: {fileID: 2800000, guid: c5c64057f2604694da9416c8cffcd25c, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
   - id: F3
     faceTexture: {fileID: 2800000, guid: e38ce39bff9f48440b79ce2751da3b1d, type: 3}
     eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
   - id: F5
     faceTexture: {fileID: 2800000, guid: 86c439673a3ed684bb8bd98a2e6d920a, type: 3}
     eyeWhiteTexture: {fileID: 2800000, guid: f38c5b7b35b04b94ab88d8df6c942356, type: 3}
-  - id: F5
-    faceTexture: {fileID: 2800000, guid: 86c439673a3ed684bb8bd98a2e6d920a, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: f38c5b7b35b04b94ab88d8df6c942356, type: 3}
-  - id: F5
-    faceTexture: {fileID: 2800000, guid: 86c439673a3ed684bb8bd98a2e6d920a, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: f38c5b7b35b04b94ab88d8df6c942356, type: 3}
-  - id: F5
-    faceTexture: {fileID: 2800000, guid: 86c439673a3ed684bb8bd98a2e6d920a, type: 3}
-    eyeWhiteTexture: {fileID: 2800000, guid: f38c5b7b35b04b94ab88d8df6c942356, type: 3}
+  - id: U1
+    faceTexture: {fileID: 2800000, guid: 59559ad560460404a9e198afede0f980, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 1ac9429c969ca464b9fbc8e4dc701b2c, type: 3}
+  - id: U3
+    faceTexture: {fileID: 2800000, guid: 63241c0b230a8d34793489617ec17ec1, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 7fd52ebefe07909439034eb14c4202b7, type: 3}
+  - id: U5
+    faceTexture: {fileID: 2800000, guid: 4f9c60fad887abd408ecea095ddc283b, type: 3}
+    eyeWhiteTexture: {fileID: 2800000, guid: 8a8091cdbdf28cf4dbde9fa3eded6b1a, type: 3}

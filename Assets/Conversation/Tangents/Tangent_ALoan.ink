@@ -4,14 +4,14 @@
 === TheBag ===
 #Pers: Player
 Hey where did your mom get that bag from? #SitMinReq
- * [Austria 1 # Pers: Andy #SReq: Vibe_]
+ * [Austria 1 # Pers: Andy]
     # Pers: Andy
     Yeah she got the bag at a christmas market pop-up.
-    How much did you get for it?
+    How much did you get for it? 
     # Pers: Player
-    Ah. #BufferTime: 3
+    Ah. #BufferTime: 3 #SichInc: V_AlexAnger_0.3
     # Pers: Andy
-    What's wrong?
+    What's wrong? 3 #SichInc: V_AndyFear_0.3
     # Pers: Player
     I'm like 90 % sure it was fake.
     I took it to the pawn shop and they said $10.

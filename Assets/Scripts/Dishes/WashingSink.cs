@@ -8,9 +8,12 @@ namespace Dishes {
         public bool AcceptingDishes => HasSpace && HasSoap;
         public bool HasSpace => Inventory.Count < 10;
         public bool HasSoap => SoapLevelInWater > 0.1f;
+        public bool NeedsDish => Inventory.Count <= 0;
 
         [Header("Config")]
         public int MaxDishes = 10;
+        [Range(0, 1f)]
+        public float StartingSoapValue = 0.25f;
         [Range(0, 0.5f)]
         public float MinAllowedDirtyPercent = 0.05f;
 
@@ -27,12 +30,14 @@ namespace Dishes {
         public CanvasGroup SoapOverlay;
         public float SoapLevelInWater;
 
+        public ParticleSystem SoapBubbles;
+
         protected void Start()
         {
             Inventory = new List<Dish.DishType>();
             PreppedDish = Dish.DishType.None;
             ResolvePreppedDish();
-            SoapLevelInWater = 0;
+            SoapLevelInWater = StartingSoapValue;
             ResolveSoap();
         }
 
@@ -44,9 +49,10 @@ namespace Dishes {
             Inventory.Add(dish);
             Debug.Log("Play Splash particle system");
             Debug.Log("Play Sound: Dish added to sink");
+            SoapBubbles.Play();
 
             // Soap
-            SoapLevelInWater -= Random.Range(0.05f, 0.15f);
+            SoapLevelInWater -= Random.Range(0.01f, 0.2f);
             SoapLevelInWater = Mathf.Max(0, SoapLevelInWater);
             ResolveSoap();
             return true;
@@ -54,10 +60,11 @@ namespace Dishes {
 
         public void PrepDishToClean()
         {
+            Debug.Log("dklfjsdl");
             if (DishWasher.Instance.ManagingDish) return;
             if (Inventory.Count <= 0) return;
             if (SoapLevelInWater <= 0.1f) return;
-
+            Debug.Log("iuiu");
             // Replaceable Logic 
             int takenDish = Random.Range(0, Inventory.Count - 1);
             PreppedDish = Inventory[takenDish];
@@ -67,7 +74,7 @@ namespace Dishes {
 
         public void AddSoap()
         {
-            SoapLevelInWater += Random.Range(0, 0.5f);
+            SoapLevelInWater += Random.Range(0.3f, 0.8f);
             SoapLevelInWater = Mathf.Min(SoapLevelInWater, 1);
             ResolveSoap();
         }
@@ -92,6 +99,8 @@ namespace Dishes {
                     TestCleaningKnife();
                     break;
             }
+
+            DishWasher.Instance.ResolveObjective();
         }
 
         public bool IsDishClean()
@@ -208,18 +217,20 @@ namespace Dishes {
 
             switch (PreppedDish) {
                 case Dish.DishType.Plate:
-                    PreppedPlate.ShowAndDirty();
+                    PreppedPlate.GetDirtySinkDish();
                     break;
                 case Dish.DishType.Glass:
-                    PreppedGlass.ShowAndDirty();
+                    PreppedGlass.GetDirtySinkDish();
                     break;
                 case Dish.DishType.Fork:
-                    PreppedFork.ShowAndDirty();
+                    PreppedFork.GetDirtySinkDish();
                     break;
                 case Dish.DishType.Knife:
-                    PreppedKnife.ShowAndDirty();
+                    PreppedKnife.GetDirtySinkDish();
                     break;
             }
+
+            DishWasher.Instance.ResolveObjective();
         }
 
         private void ResolveSoap()

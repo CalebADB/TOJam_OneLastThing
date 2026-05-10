@@ -10,9 +10,13 @@ namespace Dishes
         [Range(0, 8)]
         public int Inventory;
 
-        void Start()
+        private void Awake()
         {
             Inventory = 0;
+        }
+
+        void Start()
+        {
             ResolveInventory();
         }
 
@@ -47,7 +51,8 @@ namespace Dishes
             for (int i = 0; i < SpawnPoints.Length; i++) {
                 SpawnPoints[i].SetActive(i < Inventory); // 0 index objects with 1 indexed Inventory int
             }
-            Debug.Log($"Spawner has an inventory of {Inventory}");
+
+            DishWasher.Instance.ResolveObjective();
         }
     }
 }

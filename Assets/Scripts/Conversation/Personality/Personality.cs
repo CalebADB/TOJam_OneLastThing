@@ -131,6 +131,9 @@ public class Personality : MonoBehaviour
     private void HandleTurns()
     {
         bool isArticulatingATurn = false;
+
+        personalityVisualizer.articulationVisualizer.canvasGroup.alpha = 0.25f;
+
         foreach (Turn activeTurn in activeTurns)
         {
             if (activeTurn.isTurnComplete)
@@ -144,6 +147,7 @@ public class Personality : MonoBehaviour
                 !activeTurn.isArticulationComplete)
             {
                 Articulate(activeTurn);
+                personalityVisualizer.articulationVisualizer.canvasGroup.alpha = 1f;
                 isArticulatingATurn = true;
             }
 

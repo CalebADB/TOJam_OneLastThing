@@ -6,7 +6,7 @@ namespace Dishes {
     public class WashingSink : MonoBehaviour
     {
         public bool AcceptingDishes => HasSpace && HasSoap;
-        public bool HasSpace => Inventory.Count < 10;
+        public bool HasSpace => Inventory.Count < MaxDishes;
         public bool HasSoap => SoapLevelInWater > 0.1f;
         public bool NeedsDish => Inventory.Count <= 0;
 
@@ -31,6 +31,7 @@ namespace Dishes {
         public float SoapLevelInWater;
 
         public ParticleSystem SoapBubbles;
+        public Canvas StationCanvas;
 
         protected void Start()
         {
@@ -163,6 +164,11 @@ namespace Dishes {
                     break;
             }
             return false;
+        }
+
+        public void SetCanvas(bool showing)
+        {
+            StationCanvas.enabled = showing;
         }
 
         private void ClearPreppedDish()

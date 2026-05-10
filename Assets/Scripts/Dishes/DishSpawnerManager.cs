@@ -11,6 +11,8 @@ namespace Dishes
         public DishSpawner KnifeSpawner;
         public WashingSink NextStage;
 
+        public Canvas StationCanvas;
+
         private Dictionary<Dish.DishType, DishSpawner> _dishSpawnerDictionary;
 
         protected void Awake()
@@ -66,6 +68,11 @@ namespace Dishes
         public void ClickedKnifeSpawn()
         {
             ClickedSpawn(Dish.DishType.Knife);
+        }
+
+        public void SetCanvas(bool showing)
+        {
+            StationCanvas.enabled = showing;
         }
 
         private void ClickedSpawn(Dish.DishType type)

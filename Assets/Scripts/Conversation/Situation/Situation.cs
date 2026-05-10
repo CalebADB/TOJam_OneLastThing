@@ -18,6 +18,12 @@ public class VibeModifier
     [SerializeField] public string vibeName = "";
     [SerializeField] public float value = 0.0f;
 }
+[Serializable]
+public class VibeRequirement
+{
+    [SerializeField] public string vibeName = "";
+    [SerializeField] public float value = 0.0f;
+}
 
 [Serializable]
 public class Present

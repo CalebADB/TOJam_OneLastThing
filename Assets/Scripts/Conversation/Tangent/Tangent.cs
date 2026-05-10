@@ -142,10 +142,13 @@ public class Tangent : MonoBehaviour
         {
             nextTurn.tangentName = tangentName;
             nextTurn.personalityName = unclaimedThoughts[0].personalityName;
+            nextTurn.waitTimeRemaining = lastArticulationText.Length / 15.0f;
             nextTurn.isThinkingTurn = true;
 
             foreach (Thought unclaimedThought in unclaimedThoughts)
             {
+
+
                 if (unclaimedThought.personalityName == nextTurn.personalityName)
                 {
                     nextTurn.thoughts.Add(unclaimedThought);
@@ -167,15 +170,24 @@ public class Tangent : MonoBehaviour
         string personalityTagValue = GetPersonalityTagValue(inkStory.currentTags);
         if ("null" == personalityTagValue)
         {
-            Debug.Log($"Error: CaptureNextTurn: inkStory does not have a personality tag. inkStory.currentTags_{inkStory.currentTags}, inkStory.currentText_{inkStory.currentText} "); 
+            if (inkStory.currentTags.Count > 0)
+            {
+                Debug.Log($"Error: CaptureNextTurn: inkStory does not have a personality tag. tangent_{tangentName}, inkStory.currentTags_{inkStory.currentTags[0]}, inkStory.currentText_{inkStory.currentText} ");
+            }
+            else
+            {
+                Debug.Log($"Error: CaptureNextTurn: inkStory does not have a personality tag. tangent_{tangentName}, inkStory.currentTags.Count_0, inkStory.currentText_{inkStory.currentText} ");
+            }
+            
             return null;
-        }
+        } 
 
         string articulationText = "";
         nextTurn.tangentName = tangentName;
         nextTurn.personalityName = personalityTagValue;
         nextTurn.isThinkingTurn = false;
         nextTurn.articulations.Add(BuildArticulation(inkStory.currentText, inkStory.currentTags));
+        nextTurn.waitTimeRemaining = lastArticulationText.Length / 10.0f;
         articulationText += inkStory.currentText;
 
         bool isTurnCaptured = false;
@@ -264,6 +276,25 @@ public class Tangent : MonoBehaviour
         foreach (Choice choice in choices)
         {
             string personalityTagValue = GetPersonalityTagValue(choice.tags);
+
+            List<VibeRequirement> situationVibeRequirements = GetSituationVibeRequirementValues(choice.tags);
+
+            bool isVibeValid = true;
+            foreach (VibeRequirement vibeRequirement in situationVibeRequirements)
+            {
+                Debug.Log("WOOOOOW1");
+                if (vibeRequirement.value > conversationSituationObject.GetComponent<Situation>().GetVibeValue(vibeRequirement.vibeName))
+                {
+                    Debug.Log("WOOOOOW2");
+                    isVibeValid = false;
+                }                
+            }
+
+            if(!isVibeValid )
+            {
+                continue;
+            }
+
             if (personalityTagValue == "null" ||
                 personalityTagValue == personalityName)
             {
@@ -411,5 +442,45 @@ public class Tangent : MonoBehaviour
 
         return situationVibeChangeValues;
     }
+    private List<VibeRequirement> GetSituationVibeRequirementValues(List<string> tags)
+    {
+        List<VibeRequirement> situationVibeRequirementValues = new List<VibeRequirement>();
+        Debug.Log("WOOOOOW02");
 
+        foreach (string tag in tags)
+        {
+            Debug.Log($"WOOOOOW01 tag_{tag}");
+            string value = GetTagValueString("SichMinReq", new List<string> { tag });
+            if (value == "null")
+            {
+                continue;
+            }
+            Debug.Log("WOOOOOW0");
+
+
+            string[] splitValue = value.Split('_');
+            if (splitValue.Length != 3)
+            {
+                Debug.Log($"Error: GetSituationVibeRequirementValues: Found value_{value}, with splitValue.Length_{splitValue.Length}");
+                continue;
+            }
+
+            VibeRequirement vibeRequirement = new VibeRequirement();
+            vibeRequirement.vibeName = splitValue[1];
+
+
+            if (!float.TryParse(splitValue[2], out float vibeRequirementValue))
+            {
+                Debug.Log($"Error: GetSituationVibeRequirementValues: vibeRequirement_{vibeRequirementValue} is invalid");
+                continue;
+            }
+
+            vibeRequirement.value = vibeRequirementValue;
+
+
+            situationVibeRequirementValues.Add(vibeRequirement);
+        }
+
+        return situationVibeRequirementValues;
+    }
 }

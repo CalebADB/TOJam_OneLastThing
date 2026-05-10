@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 034be7d20ab532147ad985c36014ca3b
+guid: 7c97a56c6b8fa5e42972bbc47a057c71
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: DialogueHair
-    second: {fileID: 2100000, guid: c08221a2fc15ea245b4963b4e0b7010b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: T_Body
-    second: {fileID: 2100000, guid: 5477ba8fc527e5947815fb47eba2321e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: terry_cloth
-    second: {fileID: 2100000, guid: 376a911921dd03f42a9132b6ef06d7b8, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -736,11 +721,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 034be7d20ab532147ad985c36014ca3b, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

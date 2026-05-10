@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FaceController : MonoBehaviour
 {
@@ -13,22 +15,41 @@ public class FaceController : MonoBehaviour
     private static readonly int EyeLeftInvRotOS_ID = Shader.PropertyToID("_EyeLeftInvRotOS");
     private static readonly int EyeRightInvRotOS_ID = Shader.PropertyToID("_EyeRightInvRotOS");
     
-    
     private static readonly int EyeLeftScale_ID = Shader.PropertyToID("_EyeLeftScale");
     private static readonly int EyeRightScale_ID = Shader.PropertyToID("_EyeRightScale");
     
+    private static readonly int FaceTexture_ID = Shader.PropertyToID("_FaceTexture");
+    private static readonly int EyeWhiteTexture_ID =  Shader.PropertyToID("_EyeWhiteTexture");
 
-    private void OnEnable()
+    [SerializeField] private FaceTable faceTable;
+    
+    private void Start()
     {
-        UpdateEyesPositions();
+        UpdateEyes();
+        UpdateFace(1);
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current == null)
+            return;
+
+        if (Keyboard.current.wKey.wasPressedThisFrame)
+        {
+            UpdateFace("Test1");
+        }
+        else if (Keyboard.current.sKey.wasPressedThisFrame)
+        {
+            UpdateFace("Test2");
+        }
     }
 
     private void LateUpdate()
     {
-        UpdateEyesPositions();
+        UpdateEyes();
     }
 
-    private void UpdateEyesPositions()
+    private void UpdateEyes()
     {
         if (!faceRenderer || !eyeLeft || !eyeRight || !rootBone)
             return;
@@ -92,4 +113,25 @@ public class FaceController : MonoBehaviour
 
         faceRenderer.SetPropertyBlock(propertyBlock);
     }
+    private void UpdateFace(int index)
+    {
+        propertyBlock ??= new MaterialPropertyBlock();
+        faceRenderer.GetPropertyBlock(propertyBlock);
+        Face face = faceTable.GetFaceByIndex(0);
+        propertyBlock.SetTexture(FaceTexture_ID, face.faceTexture);
+        propertyBlock.SetTexture(EyeWhiteTexture_ID, face.eyeWhiteTexture);
+        faceRenderer.SetPropertyBlock(propertyBlock);
+    }
+    private void UpdateFace(string id)
+    {
+        propertyBlock ??= new MaterialPropertyBlock();
+        faceRenderer.GetPropertyBlock(propertyBlock);
+        Face face = faceTable.GetFaceById(id);
+        propertyBlock.SetTexture(FaceTexture_ID, face.faceTexture);
+        propertyBlock.SetTexture(EyeWhiteTexture_ID, face.eyeWhiteTexture);
+        faceRenderer.SetPropertyBlock(propertyBlock);
+    }
+    
+    
+    
 }

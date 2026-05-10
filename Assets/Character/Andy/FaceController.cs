@@ -36,7 +36,7 @@ public class FaceController : MonoBehaviour
         Vector3 eyeLeftOS = faceRenderer.transform.InverseTransformPoint(eyeLeft.position);
         Vector3 eyeRightOS = faceRenderer.transform.InverseTransformPoint(eyeRight.position);
         
-        Debug.Log($"Eye left world: {eyeLeft.position}, renderer pos: {faceRenderer.transform.position}, eyeLeftOS: {eyeLeftOS}");
+        //Debug.Log($"Eye left world: {eyeLeft.position}, renderer pos: {faceRenderer.transform.position}, eyeLeftOS: {eyeLeftOS}");
 
         propertyBlock.SetVector(EyeLeftOS_ID, new Vector4(eyeLeftOS.x, eyeLeftOS.z, eyeLeftOS.y, 1));
         propertyBlock.SetVector(EyeRightOS_ID, new Vector4(eyeRightOS.x, eyeRightOS.z, eyeRightOS.y, 1));

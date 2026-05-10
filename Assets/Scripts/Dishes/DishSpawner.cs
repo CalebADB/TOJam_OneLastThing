@@ -29,7 +29,7 @@ namespace Dishes
         public void AddDishes (int num)
         {
             Inventory += num;
-            Inventory = Mathf.Max(Inventory, SpawnPoints.Length);
+            Inventory = Mathf.Clamp(Inventory, 0, SpawnPoints.Length);
             ResolveInventory();
         }
 
@@ -45,8 +45,9 @@ namespace Dishes
         private void ResolveInventory()
         {
             for (int i = 0; i < SpawnPoints.Length; i++) {
-                SpawnPoints[i].SetActive(i <= Inventory);
+                SpawnPoints[i].SetActive(i < Inventory); // 0 index objects with 1 indexed Inventory int
             }
+            Debug.Log($"Spawner has an inventory of {Inventory}");
         }
     }
 }

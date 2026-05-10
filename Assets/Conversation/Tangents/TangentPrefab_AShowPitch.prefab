@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7399677073265217134}
   - component: {fileID: 8002482998888209703}
   m_Layer: 0
-  m_Name: TangentPrefab_ALoan
+  m_Name: TangentPrefab_AShowPitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84f2e5dfde164f41920999f81c9a2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tangent
-  tangentName: ALoan
+  tangentName: AShowPitch
   inkStoryAsset: {fileID: 4900000, guid: bc72c8d91532e794084049630436a34a, type: 3}
   shouldOutputSituationRequisites: 0
   tangentRequirementData:

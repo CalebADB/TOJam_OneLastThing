@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODProject/OneLastThing_ToJam/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639140034436034659
+  lastModified: 639140053558134752
   FileSizes:
   - Name: Desktop
-    Value: 1074
+    Value: 1524
   Exists: 1
 --- !u!114 &-6988910263817654694
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMODProject/OneLastThing_ToJam/Build/Desktop/Apartment.bank
   Name: Apartment
   StudioPath: bank:/Apartment
-  lastModified: 639140034435955526
+  lastModified: 639140053557954525
   FileSizes:
   - Name: Desktop
-    Value: 729344
+    Value: 729056
   Exists: 1
 --- !u!114 &-5941158391427519714
 MonoBehaviour:
@@ -54,14 +54,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
   Path: event:/Music/ConversationMusic
   Guid:
-    Data1: -210787509
-    Data2: 1179541772
-    Data3: 1391123895
-    Data4: 1763449085
+    Data1: 233593547
+    Data2: 1226994261
+    Data3: 1875472042
+    Data4: -1591992618
   Banks:
   - {fileID: -6988910263817654694}
   IsStream: 1
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 4180416893408032621}
   cacheVersion: 131859
-  cacheTime: 639140034436074638
+  cacheTime: 639140053558164721
   SerializableEventsDict:
   - key: event:/Music/ConversationMusic
     index: 0
@@ -110,8 +110,8 @@ MonoBehaviour:
   Path: Assets/Audio/FMODProject/OneLastThing_ToJam/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639140034436074638
+  lastModified: 639140053558164721
   FileSizes:
   - Name: Desktop
-    Value: 836
+    Value: 946
   Exists: 1

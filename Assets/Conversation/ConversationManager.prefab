@@ -121,3 +121,8 @@ MonoBehaviour:
   activeConversationObjects: []
   tangentPrefabs:
   - {fileID: 7496636242838572787, guid: f03e6e0a321474a4b8653c0b6ea1f578, type: 3}
+  - {fileID: 7496636242838572787, guid: 17470d72c0ba0a94a8ca10ac3666e8b2, type: 3}
+  - {fileID: 7496636242838572787, guid: 7095ba54593887e4a846a0bbfd9a79cd, type: 3}
+  - {fileID: 7496636242838572787, guid: c3da5510f48a5934683c6ace595136a1, type: 3}
+  - {fileID: 7496636242838572787, guid: 47971f8587644fb46977bc89dc5cd0b3, type: 3}
+  audioSituationGenerator: {fileID: 0}

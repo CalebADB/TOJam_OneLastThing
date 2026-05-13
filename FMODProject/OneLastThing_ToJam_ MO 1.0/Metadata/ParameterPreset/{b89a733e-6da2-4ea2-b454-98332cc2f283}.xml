@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{b89a733e-6da2-4ea2-b454-98332cc2f283}">
+		<property name="name">
+			<value>Rejecting</value>
+		</property>
+		<relationship name="folder">
+			<destination>{02b29acb-5a70-47f2-bad9-15eb834c7200}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{5c002998-82ec-45a7-933d-6b2dc04faf7b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{5c002998-82ec-45a7-933d-6b2dc04faf7b}">
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

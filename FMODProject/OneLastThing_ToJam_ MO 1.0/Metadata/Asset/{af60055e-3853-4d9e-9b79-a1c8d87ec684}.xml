@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{af60055e-3853-4d9e-9b79-a1c8d87ec684}">
+		<property name="assetPath">
+			<value>Rejecting/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b93150e9-969d-4292-b66c-b5fd4e80c3ca}</destination>
+		</relationship>
+	</object>
+</objects>

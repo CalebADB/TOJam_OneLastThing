@@ -9,7 +9,7 @@ I'm heading to bed.
     You're going to bed? 
     # Pers: Andy
     Yeah why do you ask?
- * [Are they okay? # Pers: Andy]
+ * [Are they okay? # Pers: Andy #SichMinReq: V_AndyExhausted_2.9]
     # Pers: Andy
     Are you doing okay?
     # Pers: Alex
@@ -31,7 +31,7 @@ But I need to go to bed.
  
 === ALoan === 
 NULL # Pers: Alex #StartTangent: ALoan
-+ [I want to go to bed #Pers: Andy]
++ [I want to go to bed #Pers: Andy #SichMinReq: V_AndyExhausted_4.9]
     #Pers: Andy
     Ok, I need to go to bed.
 

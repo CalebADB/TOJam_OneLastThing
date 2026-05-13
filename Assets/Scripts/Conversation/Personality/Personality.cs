@@ -56,6 +56,9 @@ public class Turn
 
     public bool shouldStartNewTangent = false;
     public string newTangentName = "";
+
+    public float waitTimeRemaining = 0.0f;
+
 }
 
 public class Personality : MonoBehaviour
@@ -70,6 +73,8 @@ public class Personality : MonoBehaviour
     [SerializeField] private GameObject conversationSituationObject = null;
     [SerializeField] private Color themeColor = Color.white;
     [SerializeField] private UnityEngine.Events.UnityEvent<string, Color> setConversationText;
+    [SerializeField] private bool isNPC = false;
+
 
     public void Initialize(GameObject conversationSituationObject)
     {
@@ -246,10 +251,26 @@ public class Personality : MonoBehaviour
         //Debug.Log($"Think: turn.thoughtText:\n{turn.thoughtText}");
         foreach (Thought thought in turn.thoughts)
         {
-            if (!thought.isConceived)
+            if (isNPC)
             {
-                personalityVisualizer.thoughtVisualizer.AddThoughtButton(thought);
-                thought.isConceived = true;
+                turn.waitTimeRemaining -= Time.deltaTime;
+                if (turn.waitTimeRemaining > 0)
+                {
+                    return;
+                }
+
+                turn.chosenThought = thought;
+                turn.isThinkingComplete = true;
+                Debug.Log($"Think: NPC Thought: text_{thought.text} with tangentName_{thought.tangentName}");
+                return;
+            }
+            else
+            {
+                if (!thought.isConceived)
+                {
+                    personalityVisualizer.thoughtVisualizer.AddThoughtButton(thought);
+                    thought.isConceived = true;
+                }
             }
         }
 

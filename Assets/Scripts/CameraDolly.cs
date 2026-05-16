@@ -43,10 +43,11 @@ public class CameraDolly : MonoBehaviour
         }
         else
         {
-            _swapViewButtonText.text = "Look Down";
+            _swapViewButtonText.text = "Look Up";
             transform.DORotate(LookAtDishesAngles, LookChangeDuration);
         }
 
+        _swapViewButtonText.ForceMeshUpdate(forceTextReparsing: true);
         DishWasher.Instance.SetDishCanvases(!LookingAtNPC);
     }
 }

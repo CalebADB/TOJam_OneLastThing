@@ -2132,10 +2132,6 @@ PrefabInstance:
       value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 1943903609977326606, guid: afc9f14c4a15b68489c0479f5377a3e3, type: 3}
-      propertyPath: isNPC
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1943903609977326606, guid: afc9f14c4a15b68489c0479f5377a3e3, type: 3}
       propertyPath: personalityVisualizer
       value: 
       objectReference: {fileID: 272303742}

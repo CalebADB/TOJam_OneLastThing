@@ -32,21 +32,8 @@ namespace Dishes
             AddLoad();
         }
 
-        public bool TryTakeDish(Dish.DishType type)
-        {
-            if (!_dishSpawnerDictionary.ContainsKey(type)) return false;
-
-            if (_dishSpawnerDictionary[type].Inventory > 0)
-            {
-                _dishSpawnerDictionary[type].RemoveDish();
-                return true;
-            }
-            return false;
-        }
-
         public void AddLoad()
         {
-            Debug.Log("Added Dishes!");
             _dishSpawnerDictionary[Dish.DishType.Plate].AddDishes(Random.Range(0, 4));
             _dishSpawnerDictionary[Dish.DishType.Glass].AddDishes(Random.Range(0, 4));
             _dishSpawnerDictionary[Dish.DishType.Fork].AddDishes(Random.Range(0, 4));

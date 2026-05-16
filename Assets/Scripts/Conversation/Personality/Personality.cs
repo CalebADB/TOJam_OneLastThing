@@ -71,11 +71,15 @@ public class Personality : MonoBehaviour
     [SerializeField] private List<Turn> activeTurns = new List<Turn>();
     [SerializeField] private float personalityTalkingSpeed = 20.0f; // char/sec
     [SerializeField] private GameObject conversationSituationObject = null;
+    [SerializeField] private Color themeColor = Color.white;
+    [SerializeField] private UnityEngine.Events.UnityEvent<string, Color> setConversationText;
     [SerializeField] private bool isNPC = false;
 
 
     public void Initialize(GameObject conversationSituationObject)
     {
+        if (themeColor == Color.white) themeColor = new Color(UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f), 1);
+
         this.conversationSituationObject = conversationSituationObject;
 
         CharacterVisualGenerator characterVisualGenerator = GetComponent<CharacterVisualGenerator>();
@@ -191,12 +195,18 @@ public class Personality : MonoBehaviour
             
             if ("NULL\n" == turn.articulations[turn.articulationIndex].text)
             {
+                if (personalityVisualizer.articulationVisualizer.textMeshProUGUI.text != string.Empty)
+                    setConversationText.Invoke(string.Empty, themeColor);
+
                 Debug.Log($"Articulate: We Capture a NULL line");
                 personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = "";
                 turn.articulationTimeRemaining = 0.0f;
             }
             else
             {
+                if (personalityVisualizer.articulationVisualizer.textMeshProUGUI.text != turn.articulations[turn.articulationIndex].text)
+                    setConversationText.Invoke(turn.articulations[turn.articulationIndex].text, themeColor);
+
                 personalityVisualizer.articulationVisualizer.textMeshProUGUI.text = turn.articulations[turn.articulationIndex].text;
                 turn.articulationTimeRemaining = CalculateArticulationTime(turn.articulations[turn.articulationIndex]);
             }

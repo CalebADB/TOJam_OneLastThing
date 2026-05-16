@@ -46,6 +46,7 @@ namespace Dishes
         {
             if (PreppingDish) _rinsedDish = true; // you can keep rinsing its fine
 
+            Debug.Log("Play Sound: Water running");
             WaterStream.Play();
             if (_stopWater != null) StopCoroutine(_stopWater);
             _stopWater = StartCoroutine(TurnWaterOff());
@@ -57,29 +58,21 @@ namespace Dishes
         {
             yield return new WaitForSeconds(RinseWaterDuration);
             WaterStream.Stop();
+            // Stop Water Running sound
         }
 
         public void MoveDishToRack()
         {
             if (NeedToDryDish)
             {
+                Debug.Log("Play Sound: Put DishDown"); // if played here, use a switch case with PreppedDish to play the specific dish.
+
                 PreppedDish = Dish.DishType.None;
                 ResolvePreppedDish();
-                Debug.Log("play glass clink");
+                
                 if (Random.Range(0, 4) == 0)
                     DishWasher.Instance.DishSpawnMgr.AddLoad();
             }
-        }
-
-        public bool MoveDishHere(Dish.DishType type)
-        {
-            throw new System.ApplicationException("not used");
-            if (!AcceptingDishes) return false;
-
-            _rinsedDish = false;
-            PreppedDish = type;
-            ResolvePreppedDish();
-            return true;
         }
 
         public void SetCanvas(bool showing)

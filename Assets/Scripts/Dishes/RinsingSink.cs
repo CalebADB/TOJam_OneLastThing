@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Dishes
         public bool NeedToRinseDish => PreppingDish && !_rinsedDish;
         public bool AcceptingDishes => !PreppingDish;
 
+        public float RinseWaterDuration = 1.5f;
+
         public Dish.DishType PreppedDish;
         public bool PreppingDish => PreppedDish != Dish.DishType.None;
         public Dish PreppedPlate;
@@ -16,7 +19,11 @@ namespace Dishes
         public Dish PreppedFork;
         public Dish PreppedKnife;
 
+        public ParticleSystem WaterStream;
+        public Canvas StationCanvas;
+
         private bool _rinsedDish;
+        private Coroutine _stopWater;
 
         protected void Start()
         {
@@ -39,33 +46,39 @@ namespace Dishes
         {
             if (PreppingDish) _rinsedDish = true; // you can keep rinsing its fine
 
-            // TODO: Run particles
+            Debug.Log("Play Sound: Water running");
+            WaterStream.Play();
+            if (_stopWater != null) StopCoroutine(_stopWater);
+            _stopWater = StartCoroutine(TurnWaterOff());
 
             DishWasher.Instance.ResolveObjective();
+        }
+
+        IEnumerator TurnWaterOff()
+        {
+            yield return new WaitForSeconds(RinseWaterDuration);
+            WaterStream.Stop();
+            // Stop Water Running sound
         }
 
         public void MoveDishToRack()
         {
             if (NeedToDryDish)
             {
+                Debug.Log("Play Sound: Put DishDown"); // if played here, use a switch case with PreppedDish to play the specific dish.
+
                 PreppedDish = Dish.DishType.None;
                 ResolvePreppedDish();
-                Debug.Log("play glass clink");
+                
                 if (Random.Range(0, 4) == 0)
                     DishWasher.Instance.DishSpawnMgr.AddLoad();
             }
         }
 
-        public bool MoveDishHere(Dish.DishType type)
+        public void SetCanvas(bool showing)
         {
-            throw new System.ApplicationException("not used");
-            if (!AcceptingDishes) return false;
-
-            _rinsedDish = false;
-            PreppedDish = type;
-            ResolvePreppedDish();
-            return true;
-        }      
+            StationCanvas.enabled = showing;
+        }
 
         private void ResolvePreppedDish()
         {

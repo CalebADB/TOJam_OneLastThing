@@ -42,7 +42,8 @@ namespace Dishes
 
         public void CleanSlightly()
         {
-            DirtyPercentage -= IsCutlery ? Random.Range(0, 0.25f) : Random.Range(0, 0.1f);
+            Debug.Log("Play Sound: Scrub");
+            DirtyPercentage -= IsCutlery ? Random.Range(0.03f, 0.12f) : Random.Range(0.02f, 0.09f);
             DirtyPercentage = Mathf.Max(0, DirtyPercentage);
             ResolveDirt();
         }
@@ -55,7 +56,7 @@ namespace Dishes
 
         public void RandomizeDirt(DirtyRandomizationType randomization)
         {
-            DirtyPercentage = randomization == DirtyRandomizationType.FromSoapWater ? Random.Range(0.2f, 0.7f) : Random.Range(0.5f, 1f);
+            DirtyPercentage = randomization == DirtyRandomizationType.FromSoapWater ? Random.Range(0.4f, 0.8f) : Random.Range(0.6f, 1f);
             ResolveDirt();
         }
 
@@ -63,6 +64,7 @@ namespace Dishes
         {
             for (int i = 0; i < DirtSmears.Length; i++)
             {
+                // Debug.Log($"{DirtyPercentage} vs {(float)i / DirtSmears.Length} that is to say: {DirtyPercentage > (float)i / DirtSmears.Length}");
                 DirtSmears[i].gameObject.SetActive(DirtyPercentage > (float)i / DirtSmears.Length);
             }
         }

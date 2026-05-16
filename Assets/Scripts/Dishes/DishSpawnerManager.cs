@@ -11,6 +11,8 @@ namespace Dishes
         public DishSpawner KnifeSpawner;
         public WashingSink NextStage;
 
+        public Canvas StationCanvas;
+
         private Dictionary<Dish.DishType, DishSpawner> _dishSpawnerDictionary;
 
         protected void Awake()
@@ -30,21 +32,8 @@ namespace Dishes
             AddLoad();
         }
 
-        public bool TryTakeDish(Dish.DishType type)
-        {
-            if (!_dishSpawnerDictionary.ContainsKey(type)) return false;
-
-            if (_dishSpawnerDictionary[type].Inventory > 0)
-            {
-                _dishSpawnerDictionary[type].RemoveDish();
-                return true;
-            }
-            return false;
-        }
-
         public void AddLoad()
         {
-            Debug.Log("Added Dishes!");
             _dishSpawnerDictionary[Dish.DishType.Plate].AddDishes(Random.Range(0, 4));
             _dishSpawnerDictionary[Dish.DishType.Glass].AddDishes(Random.Range(0, 4));
             _dishSpawnerDictionary[Dish.DishType.Fork].AddDishes(Random.Range(0, 4));
@@ -66,6 +55,11 @@ namespace Dishes
         public void ClickedKnifeSpawn()
         {
             ClickedSpawn(Dish.DishType.Knife);
+        }
+
+        public void SetCanvas(bool showing)
+        {
+            StationCanvas.enabled = showing;
         }
 
         private void ClickedSpawn(Dish.DishType type)

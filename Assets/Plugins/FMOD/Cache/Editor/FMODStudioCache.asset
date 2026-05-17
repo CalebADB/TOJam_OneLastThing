@@ -79,7 +79,7 @@ MonoBehaviour:
   Name: Indifference
   StudioPath: 
   Min: 0
-  Max: 1
+  Max: 5
   Default: 0
   ID:
     data1: 3199911269
@@ -159,7 +159,7 @@ MonoBehaviour:
   Path: FMODProject/OneLastThing_ToJam_ MO 1.0/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639140326256060298
+  lastModified: 639145578123735902
   FileSizes:
   - Name: Desktop
     Value: 1524
@@ -227,10 +227,10 @@ MonoBehaviour:
   Path: FMODProject/OneLastThing_ToJam_ MO 1.0/Build/Desktop/Apartment.bank
   Name: Apartment
   StudioPath: bank:/Apartment
-  lastModified: 639140326256050292
+  lastModified: 639145578123555654
   FileSizes:
   - Name: Desktop
-    Value: 4212512
+    Value: 12313280
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -256,7 +256,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 7292230798333268269}
   cacheVersion: 131859
-  cacheTime: 639140326256082166
+  cacheTime: 639145578123765894
   SerializableEventsDict:
   - key: event:/Music/ConversationMusic
     index: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   Path: FMODProject/OneLastThing_ToJam_ MO 1.0/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639140326256082166
+  lastModified: 639145578123765894
   FileSizes:
   - Name: Desktop
     Value: 1178

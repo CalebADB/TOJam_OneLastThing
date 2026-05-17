@@ -51,23 +51,35 @@ public class AudioSituationGenerator : MonoBehaviour
     [SerializeField] SoundVibeType activeSoundVibeType = SoundVibeType.Indifference;
     [SerializeField] SoundVibeType nextSoundVibeType = SoundVibeType.Indifference;
 
+    [SerializeField] bool isInitialized = false;
+
 
     public void Initialize(GameObject conversationSituationObject)
     {
         this.conversationSituationObject = conversationSituationObject;
+        isInitialized = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (!isInitialized)
+        {
+            return;
+        }
+
         UpdateVibeValues();
     }
 
     private void UpdateVibeValues()
     {
-        if (shouldIgnoreSituation)
+        if (!shouldIgnoreSituation)
         {
-            return;
+            CalculateExhaustedSoundVibeValue();
+            CalculateUnheardSoundVibeValue();
+            CalculateIndifferenceSoundVibeValue();
+            CalculateWantingSoundVibeValue();
+            CalculateRejectingSoundVibeValue();
         }
 
         if (conversationSituationObject == null)
@@ -78,12 +90,6 @@ public class AudioSituationGenerator : MonoBehaviour
             Debug.LogError("Error: AudioSituationGenerator: UpdateVibeValues: situation is null");
             return;
         }
-
-        CalculateExhaustedSoundVibeValue();
-        CalculateUnheardSoundVibeValue();
-        CalculateIndifferenceSoundVibeValue();
-        CalculateWantingSoundVibeValue();
-        CalculateRejectingSoundVibeValue();
 
         HandleSoundVibes();
     }

@@ -3,14 +3,14 @@
 
 === TheBag ===
 #Pers: Alex
-Hey where did your mom get that bag from? #SitMinReq
+Hey where did your mom get that bag from? #SichInc: V_AndyAnger_0.3
  + [Austria 3 # Pers: Andy #SichMinReq: V_AndyAnger_2]
     -> MomComplaints
  + [Austria 2 # Pers: Andy #SichMinReq: V_AndyAnger_1]
     # Pers: Andy
-    Yeah, the one from austria?
+    Yeah, the one from austria? #SichInc: V_AndyAnger_0.3
     # Pers: Alex
-    Uh, yeah. Well it's not Gucci.
+    Uh, yeah. Well it's not Gucci. #SichInc: V_AlexFear_1.3 
     Had a bad time at the pawn shop today.
     # Pers: Andy
     Mmhmm.
@@ -31,20 +31,20 @@ Hey where did your mom get that bag from? #SitMinReq
  
 === MomComplaints ===
 # Pers: Andy
-Could we not bring my mom into this?
+Could we not bring my mom into this? #SichInc: V_AlexFear_1.3 
 What's up with the bag?
 # Pers: Alex
 It's a fake.
-I wasted a whole 4 hours 
+I wasted a whole 4 hours #SichInc: V_AlexAnger_1.3 
 # Pers: Andy
 Well it's not a big deal. 
 It's not like you bought it.
 + [I don't like her mom #Pers: Alex]
     #Pers: Alex
-    You gotta admit that your mom does this a lot. 
+    You gotta admit that your mom does this a lot. #SichInc: V_AlexAnger_1.3 
     She comes up with stories.
-    And she's cool and all but...
-    It's still my time.
+    And she's cool and all but... #SichInc: V_AlexAnger_0.3
+    It's still my time. 
     I didn't have that type of time today.
     #Pers: Andy
     You gotta lay off my mom.

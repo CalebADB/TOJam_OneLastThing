@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoseController
   poseTable: {fileID: 11400000, guid: df1bfe9f4967e6f4d99fac6f45d47d97, type: 2}
   animator: {fileID: 8247102890323757285}
-  placeholderPoseClip: {fileID: 3293749814519828751, guid: ddd3d3e7b870a7d45b99a66c01edbdf2, type: 3}
+  placeholderPoseClip: {fileID: 9014268210442870009, guid: ccc61d0e11246e5478152bf8e19ceef7, type: 3}
   visualGenerator: {fileID: 1278238874502317429}
 --- !u!114 &1278238874502317429
 MonoBehaviour:

@@ -41,9 +41,9 @@ Well it's not a big deal.
 It's not like you bought it.
 + [I don't like her mom #Pers: Alex]
     #Pers: Alex
-    You gotta admit that your mom does this a lot. #SichInc: V_AlexAnger_1.3 
+    You gotta admit that your mom does this a lot. #SichInc: V_AlexAnger_1.9 
     She comes up with stories.
-    And she's cool and all but... #SichInc: V_AlexAnger_0.3
+    And she's cool and all but... #SichInc: V_AlexAnger_1.3
     It's still my time. 
     I didn't have that type of time today.
     #Pers: Andy
@@ -118,8 +118,13 @@ What's wrong?
 
 === TheRequest ===
 #Pers: Alex
-I'm not going to be able to pay rent.
+I'm not going to be able to pay rent. #SichInc: V_AlexFear_2.3
 
+#Pers: Andy
+That's all of our dialogue so far 
+
+#Pers: Alex
+Thanks for trying our game :-)
 
 -> DONE
  

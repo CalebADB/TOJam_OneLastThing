@@ -96,11 +96,11 @@ public class AudioSituationGenerator : MonoBehaviour
 
     private void CalculateExhaustedSoundVibeValue()
     {
-        exhaustedSoundVibeValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AndyExhausted");
+        exhaustedSoundVibeValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AlexExhausted");
     }
     private void CalculateUnheardSoundVibeValue()
     {
-        unheardSoundVibeValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AndyUnheard");
+        unheardSoundVibeValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AlexUnheard");
     }
     private void CalculateIndifferenceSoundVibeValue()
     {
@@ -108,11 +108,11 @@ public class AudioSituationGenerator : MonoBehaviour
     }
     private void CalculateWantingSoundVibeValue()
     {
-        wantingSoundVibeValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AndyFear");
+        wantingSoundVibeValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AlexFear");
     }
     private void CalculateRejectingSoundVibeValue()
     {
-        float andyAngerValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AndyAnger");
+        float andyAngerValue = conversationSituationObject.GetComponent<Situation>().GetVibeValue("AlexAnger");
         //Debug.Log($"CalculateRejectingSoundVibe: floatAndyAnger_{andyAngerValue}");
         rejectingSoundVibeValue = andyAngerValue;
     }
@@ -183,7 +183,25 @@ public class AudioSituationGenerator : MonoBehaviour
             return;
         }
 
-
+        switch (activeSoundVibeType)
+        {
+            case SoundVibeType.Indifference:
+                {
+                    indifferenceSoundVibe.value = Mathf.Lerp(indifferenceSoundVibe.value, indifferenceSoundVibeValue, Math.Clamp(Time.deltaTime / 2.0f, 0.0f, 1.0f));
+                    break;
+                }
+            case SoundVibeType.Wanting:
+                {
+                    wantingSoundVibe.value = Mathf.Lerp(wantingSoundVibe.value, wantingSoundVibeValue, Math.Clamp(Time.deltaTime / 2.0f, 0.0f, 1.0f));
+                    break;
+                }
+            case SoundVibeType.Rejecting:
+                {
+                    rejectingSoundVibe.value = Mathf.Lerp(rejectingSoundVibe.value, rejectingSoundVibeValue, Math.Clamp(Time.deltaTime / 2.0f, 0.0f, 1.0f));
+                    break;
+                }
+        }
+         
         SoundVibeType soundVibeType = SoundVibeType.Indifference;
 
         if (rejectingSoundVibeValue > indifferenceSoundVibeValue)

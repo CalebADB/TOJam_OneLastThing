@@ -282,10 +282,8 @@ public class Tangent : MonoBehaviour
             bool isVibeValid = true;
             foreach (VibeRequirement vibeRequirement in situationVibeRequirements)
             {
-                Debug.Log("WOOOOOW1");
                 if (vibeRequirement.value > conversationSituationObject.GetComponent<Situation>().GetVibeValue(vibeRequirement.vibeName))
                 {
-                    Debug.Log("WOOOOOW2");
                     isVibeValid = false;
                 }                
             }
@@ -445,17 +443,14 @@ public class Tangent : MonoBehaviour
     private List<VibeRequirement> GetSituationVibeRequirementValues(List<string> tags)
     {
         List<VibeRequirement> situationVibeRequirementValues = new List<VibeRequirement>();
-        Debug.Log("WOOOOOW02");
 
         foreach (string tag in tags)
         {
-            Debug.Log($"WOOOOOW01 tag_{tag}");
             string value = GetTagValueString("SichMinReq", new List<string> { tag });
             if (value == "null")
             {
                 continue;
             }
-            Debug.Log("WOOOOOW0");
 
 
             string[] splitValue = value.Split('_');

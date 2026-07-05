@@ -159,7 +159,7 @@ MonoBehaviour:
   Path: FMODProject/OneLastThing_ToJam_ MO 1.0/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639145578123735902
+  lastModified: 639146309642354450
   FileSizes:
   - Name: Desktop
     Value: 1524
@@ -227,10 +227,10 @@ MonoBehaviour:
   Path: FMODProject/OneLastThing_ToJam_ MO 1.0/Build/Desktop/Apartment.bank
   Name: Apartment
   StudioPath: bank:/Apartment
-  lastModified: 639145578123555654
+  lastModified: 639146309642214210
   FileSizes:
   - Name: Desktop
-    Value: 12313280
+    Value: 12312576
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -256,7 +256,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 7292230798333268269}
   cacheVersion: 131859
-  cacheTime: 639145578123765894
+  cacheTime: 639146309642394224
   SerializableEventsDict:
   - key: event:/Music/ConversationMusic
     index: 0
@@ -285,30 +285,6 @@ MonoBehaviour:
   Labels: []
   Exists: 1
 --- !u!114 &2558990175158859131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ConversationMusic/IndifferenceExhausted
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: IndifferenceExhausted
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1441626470
-    data2: 505722126
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &3036326347759554808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,37 +353,11 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: 8186659218811025164}
-  - {fileID: 3036326347759554808}
   - {fileID: -6541689723162198730}
-  - {fileID: 7135644610464632609}
   - {fileID: -4272612364486117108}
   MinDistance: 1
   MaxDistance: 20
   Length: 84072
---- !u!114 &7135644610464632609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ConversationMusic/IndifferenceUnheard
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: IndifferenceUnheard
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3640662809
-    data2: 3801336936
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &7292230798333268269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,10 +373,10 @@ MonoBehaviour:
   Path: FMODProject/OneLastThing_ToJam_ MO 1.0/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639145578123765894
+  lastModified: 639146309642394224
   FileSizes:
   - Name: Desktop
-    Value: 1178
+    Value: 1090
   Exists: 1
 --- !u!114 &8186659218811025164
 MonoBehaviour:

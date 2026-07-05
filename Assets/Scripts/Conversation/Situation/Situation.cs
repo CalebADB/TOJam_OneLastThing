@@ -120,6 +120,7 @@ public class Situation : MonoBehaviour
             {
                 vibe.value += vibeDifference;
                 vibe.value = Mathf.Clamp(vibe.value, 0.0f, vibe.maxValue);
+                isVibeFound = true; 
             }
         }
 
